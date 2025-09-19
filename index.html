@@ -1338,124 +1338,7 @@
 
 </head>
 <body>
-    const ADMIN_ID = '8036875641';
-const SERVER_URL = window.location.origin;
-let socket = null;
 
-// Инициализация подключения Socket.io
-function initSocketConnection() {
-    try {
-        socket = io(SERVER_URL, {
-            transports: ['websocket', 'polling']
-        });
-        
-        socket.on('connect', () => {
-            console.log('Подключено к серверу');
-            updateConnectionStatus(true);
-            
-            const user = Telegram.WebApp.initDataUnsafe.user;
-            if (user) {
-                socket.emit('user-connected', {
-                    userId: user.id,
-                    username: user.username,
-                    isAdmin: admins.includes(user.id.toString())
-                });
-            }
-        });
-        
-        socket.on('disconnect', () => {
-            console.log('Отключено от сервера');
-            updateConnectionStatus(false);
-        });
-        
-        socket.on('connect_error', (error) => {
-            console.error('Ошибка подключения:', error);
-            updateConnectionStatus(false);
-        });
-        
-        socket.on('tasks-updated', (updatedTasks) => {
-            tasks = updatedTasks;
-            renderTasks();
-            renderMainTasks();
-        });
-        
-        socket.on('task-created', (newTask) => {
-            tasks.push(newTask);
-            renderTasks();
-            renderMainTasks();
-            showNotification(`Добавлено новое задание: ${newTask.title}`);
-        });
-        
-        socket.on('task-deleted', (taskId) => {
-            tasks = tasks.filter(task => task.id !== taskId);
-            renderTasks();
-            renderMainTasks();
-            showNotification('Задание удалено');
-        });
-        
-        socket.on('new-message', (message) => {
-            if (currentChatUser && message.senderId === currentChatUser.id) {
-                addMessageToChat(message, 'admin-chat-messages');
-            }
-        });
-        
-        socket.on('admin-message', (message) => {
-            addMessageToChat(message, 'support-chat-messages');
-        });
-        
-        socket.on('user-balance-updated', (balanceData) => {
-            if (balanceData.userId === getCurrentUserId()) {
-                userData.balance = balanceData.balance;
-                updateUserData();
-                showNotification(`Баланс обновлен: ${balanceData.balance} ₽`);
-            }
-        });
-        
-    } catch (error) {
-        console.error('Ошибка инициализации сокета:', error);
-        updateConnectionStatus(false);
-    }
-}
-
-// Функция обновления статуса подключения
-function updateConnectionStatus(connected) {
-    const statusElement = document.getElementById('connection-status');
-    const textElement = document.getElementById('connection-text');
-    
-    if (connected) {
-        statusElement.classList.remove('disconnected');
-        statusElement.classList.add('connected');
-        textElement.textContent = '';
-    } else {
-        statusElement.classList.remove('connected');
-        statusElement.classList.add('disconnected');
-        textElement.textContent = '';
-    }
-}
-
-// Функция для отправки сообщений через сокет
-function sendSocketMessage(event, data) {
-    if (socket && socket.connected) {
-        socket.emit(event, data);
-    }
-}
-
-// Функция для добавления сообщения в чат
-function addMessageToChat(message, containerId) {
-    const messagesContainer = document.getElementById(containerId);
-    const messageElement = document.createElement('div');
-    
-    const isUserMessage = message.senderId === getCurrentUserId();
-    messageElement.className = isUserMessage ? 'message message-user' : 'message message-admin';
-    
-    messageElement.innerHTML = `
-        <div>${message.text}</div>
-        <div class="message-time">${new Date(message.timestamp).toLocaleTimeString()}</div>
-    `;
-    
-    messagesContainer.appendChild(messageElement);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-}
     <div class="connection-status connected" id="connection-status" style="display: none;">
         <span class="status-dot"></span>
         <span id="connection-text"></span>
@@ -1992,9 +1875,124 @@ function addMessageToChat(message, containerId) {
 
     <script>
         const ADMIN_ID = '8036875641';
-        const SERVER_URL = window.location.origin;
-        let socket = null;
+const SERVER_URL = window.location.origin;
+let socket = null;
 
+// Инициализация подключения Socket.io
+function initSocketConnection() {
+    try {
+        socket = io(SERVER_URL, {
+            transports: ['websocket', 'polling']
+        });
+        
+        socket.on('connect', () => {
+            console.log('Подключено к серверу');
+            updateConnectionStatus(true);
+            
+            const user = Telegram.WebApp.initDataUnsafe.user;
+            if (user) {
+                socket.emit('user-connected', {
+                    userId: user.id,
+                    username: user.username,
+                    isAdmin: admins.includes(user.id.toString())
+                });
+            }
+        });
+        
+        socket.on('disconnect', () => {
+            console.log('Отключено от сервера');
+            updateConnectionStatus(false);
+        });
+        
+        socket.on('connect_error', (error) => {
+            console.error('Ошибка подключения:', error);
+            updateConnectionStatus(false);
+        });
+        
+        socket.on('tasks-updated', (updatedTasks) => {
+            tasks = updatedTasks;
+            renderTasks();
+            renderMainTasks();
+        });
+        
+        socket.on('task-created', (newTask) => {
+            tasks.push(newTask);
+            renderTasks();
+            renderMainTasks();
+            showNotification(`Добавлено новое задание: ${newTask.title}`);
+        });
+        
+        socket.on('task-deleted', (taskId) => {
+            tasks = tasks.filter(task => task.id !== taskId);
+            renderTasks();
+            renderMainTasks();
+            showNotification('Задание удалено');
+        });
+        
+        socket.on('new-message', (message) => {
+            if (currentChatUser && message.senderId === currentChatUser.id) {
+                addMessageToChat(message, 'admin-chat-messages');
+            }
+        });
+        
+        socket.on('admin-message', (message) => {
+            addMessageToChat(message, 'support-chat-messages');
+        });
+        
+        socket.on('user-balance-updated', (balanceData) => {
+            if (balanceData.userId === getCurrentUserId()) {
+                userData.balance = balanceData.balance;
+                updateUserData();
+                showNotification(`Баланс обновлен: ${balanceData.balance} ₽`);
+            }
+        });
+        
+    } catch (error) {
+        console.error('Ошибка инициализации сокета:', error);
+        updateConnectionStatus(false);
+    }
+}
+
+// Функция обновления статуса подключения
+function updateConnectionStatus(connected) {
+    const statusElement = document.getElementById('connection-status');
+    const textElement = document.getElementById('connection-text');
+    
+    if (connected) {
+        statusElement.classList.remove('disconnected');
+        statusElement.classList.add('connected');
+        textElement.textContent = '';
+    } else {
+        statusElement.classList.remove('connected');
+        statusElement.classList.add('disconnected');
+        textElement.textContent = '';
+    }
+}
+
+// Функция для отправки сообщений через сокет
+function sendSocketMessage(event, data) {
+    if (socket && socket.connected) {
+        socket.emit(event, data);
+    }
+}
+
+// Функция для добавления сообщения в чат
+function addMessageToChat(message, containerId) {
+    const messagesContainer = document.getElementById(containerId);
+    const messageElement = document.createElement('div');
+    
+    const isUserMessage = message.senderId === getCurrentUserId();
+    messageElement.className = isUserMessage ? 'message message-user' : 'message message-admin';
+    
+    messageElement.innerHTML = `
+        <div>${message.text}</div>
+        <div class="message-time">${new Date(message.timestamp).toLocaleTimeString()}</div>
+    `;
+    
+    messagesContainer.appendChild(messageElement);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+ 
         let tasks = [];
         let completedTasks = [];
         let pendingVerifications = [];

@@ -1,6 +1,28 @@
+# Зависимости
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
 .env
+.env.local
+.env.production
+
+# Логи
 *.log
+logs/
+
+# Системные файлы
 .DS_Store
-dist/
-build/
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Временные файлы
+tmp/
+temp/
