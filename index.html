@@ -32,6 +32,7 @@
             --teal-gradient: linear-gradient(135deg, #0ea5e9, #0369a1);
             --success: #10b981;
             --error: #ef4444;
+            --warning: #f59e0b;
         }
 
         body {
@@ -63,6 +64,7 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 8px;
+            cursor: pointer;
         }
 
         .logo-text {
@@ -90,33 +92,31 @@
             margin-bottom: 20px;
         }
 
-        /* Стили для видео-иконок - УВЕЛИЧЕНЫ */
         .video-icon {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 10px; /* Увеличено */
+            border-radius: 10px;
         }
 
         .video-container {
-            width: 48px; /* Увеличено */
-            height: 48px; /* Увеличено */
-            border-radius: 10px; /* Увеличено */
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
             overflow: hidden;
-            margin-bottom: 10px; /* Увеличено */
+            margin-bottom: 10px;
         }
 
         .video-medium {
-            width: 40px; /* Увеличено */
-            height: 40px; /* Увеличено */
+            width: 40px;
+            height: 40px;
         }
 
         .video-large {
-            width: 56px; /* Увеличено */
-            height: 56px; /* Увеличено */
+            width: 56px;
+            height: 56px;
         }
 
-        /* Компактные карточки */
         .card {
             background: var(--card-bg);
             border-radius: 20px;
@@ -127,7 +127,6 @@
             backdrop-filter: blur(10px);
         }
 
-        /* Герой баннер */
         .hero-banner {
             border-radius: 20px;
             overflow: hidden;
@@ -144,37 +143,6 @@
             object-fit: cover;
         }
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(15, 15, 35, 0.8), rgba(26, 26, 58, 0.7));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 16px;
-            text-align: center;
-        }
-
-        .hero-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero-subtitle {
-            font-size: 14px;
-            color: var(--text-secondary);
-            max-width: 280px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-        }
-
-        /* Компактные параллельные блоки */
         .stats-grid {
             display: flex;
             gap: 12px;
@@ -184,13 +152,13 @@
 
         .stat-card {
             border-radius: 18px;
-            padding: 20px; /* Увеличено */
+            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            min-height: 120px; /* Увеличено */
+            min-height: 120px;
             width: 48%;
             position: relative;
             overflow: hidden;
@@ -218,29 +186,28 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 10px; /* Увеличено */
+            margin-bottom: 10px;
         }
 
         .stat-label {
-            font-size: 12px; /* Увеличено */
+            font-size: 12px;
             font-weight: 600;
             color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 8px; /* Увеличено */
+            margin-bottom: 8px;
         }
 
         .stat-value {
-            font-size: 22px; /* Увеличено */
+            font-size: 22px;
             font-weight: 800;
             color: white;
             line-height: 1.2;
         }
 
-        /* Карточка биржи */
         .exchange-card {
             background: var(--gold-gradient);
             color: #000;
             border-radius: 18px;
-            padding: 20px; /* Увеличено */
+            padding: 20px;
             margin-bottom: 16px;
             text-align: center;
             cursor: pointer;
@@ -255,22 +222,21 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 12px; /* Увеличено */
+            margin-bottom: 12px;
         }
 
         .exchange-title {
-            font-size: 18px; /* Увеличено */
+            font-size: 18px;
             font-weight: 700;
-            margin-bottom: 6px; /* Увеличено */
+            margin-bottom: 6px;
         }
 
         .exchange-text {
-            font-size: 13px; /* Увеличено */
+            font-size: 13px;
             opacity: 0.9;
             line-height: 1.3;
         }
 
-        /* Карточка размещения поста */
         .post-promo {
             background: var(--card-bg);
             border-radius: 18px;
@@ -284,7 +250,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 14px; /* Увеличено */
+            margin-bottom: 14px;
         }
 
         .post-title {
@@ -301,7 +267,6 @@
             line-height: 1.4;
         }
 
-        /* Кнопки */
         .btn {
             display: inline-block;
             background: var(--accent);
@@ -332,7 +297,18 @@
             width: 100%;
         }
 
-        /* Кнопка перехода к заданиям */
+        .btn-success {
+            background: var(--success);
+        }
+
+        .btn-warning {
+            background: var(--warning);
+        }
+
+        .btn-error {
+            background: var(--error);
+        }
+
         .tasks-button-container {
             margin: 25px 0;
             text-align: center;
@@ -357,7 +333,6 @@
             transform: scale(0.96);
         }
 
-        /* Навигация */
         .bottom-nav {
             position: fixed;
             bottom: 16px;
@@ -396,6 +371,21 @@
             color: white;
         }
 
+        .nav-item.notification {
+            position: relative;
+        }
+
+        .nav-item.notification::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 8px;
+            height: 8px;
+            background: var(--error);
+            border-radius: 50%;
+        }
+
         .nav-icon {
             font-size: 20px;
             margin-bottom: 4px;
@@ -408,7 +398,6 @@
             font-weight: 500;
         }
 
-        /* Модальные окна */
         .modal {
             position: fixed;
             top: 0;
@@ -449,6 +438,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            position: relative;
         }
 
         .modal-title {
@@ -466,6 +456,16 @@
             font-size: 24px;
             color: var(--text-secondary);
             cursor: pointer;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .modal-body {
@@ -498,7 +498,6 @@
             box-shadow: 0 6px 20px rgba(139, 92, 246, 0.25);
         }
 
-        /* Чат с админом */
         .chat-modal {
             position: fixed;
             top: 0;
@@ -529,8 +528,8 @@
         }
 
         .chat-avatar {
-            width: 50px; /* Увеличено */
-            height: 50px; /* Увеличено */
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: var(--purple-gradient);
             display: flex;
@@ -540,8 +539,8 @@
         }
 
         .chat-avatar .video-icon {
-            width: 30px; /* Увеличено */
-            height: 30px; /* Увеличено */
+            width: 30px;
+            height: 30px;
         }
 
         .chat-info {
@@ -625,7 +624,6 @@
             cursor: pointer;
         }
 
-        /* Модальное окно с ценами */
         .prices-modal {
             position: fixed;
             top: 0;
@@ -713,7 +711,843 @@
             text-align: center;
         }
 
-        /* Анимации */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+        
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 16px;
+            position: relative;
+            border: 3px solid var(--accent);
+        }
+        
+        .profile-avatar video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-info {
+            flex: 1;
+        }
+        
+        .profile-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .profile-id {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        
+        .profile-level {
+            display: inline-block;
+            background: var(--purple-gradient);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .profile-stat {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        
+        .stat-value {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .profile-section {
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            padding-left: 8px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .profile-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .profile-action {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+        
+        .action-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--blue-gradient);
+            border-radius: 8px;
+            color: white;
+        }
+        
+        .action-text {
+            flex: 1;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        .action-arrow {
+            color: var(--text-secondary);
+        }
+        
+        .level-progress {
+            margin-top: 20px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid var(--border);
+        }
+        
+        .level-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .level-name {
+            font-weight: 600;
+        }
+        
+        .level-count {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--gold-gradient);
+            border-radius: 4px;
+            width: 0%;
+        }
+        
+        .level-info {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        
+        .referral-system {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 16px;
+            margin: 20px 0;
+            border: 1px solid var(--border);
+        }
+        
+        .referral-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        
+        .referral-code {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        
+        .code-value {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .copy-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .referral-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        
+        .referral-stat {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        
+        .referral-value {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .referral-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .referral-info {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .about-content {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+        
+        .about-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-align: center;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .about-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .about-feature {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .feature-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .about-footer {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 20px;
+        }
+        
+        /* Стили для вкладки заданий */
+        .tasks-tab {
+            padding-bottom: 20px;
+        }
+        
+        .tasks-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 8px;
+            border: 1px solid var(--border);
+        }
+        
+        .task-tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .task-tab.active {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .task-tab.notification {
+            position: relative;
+            color: var(--error);
+        }
+        
+        .task-tab.notification::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 8px;
+            height: 8px;
+            background: var(--error);
+            border-radius: 50%;
+        }
+        
+        .search-container {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px 16px 14px 45px;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+        
+        .filters-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+        
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 8px 16px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        
+        .filter-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        
+        .tasks-grid {
+            display: grid;
+            gap: 16px;
+        }
+        
+        .task-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .task-card:active {
+            transform: scale(0.98);
+        }
+        
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .task-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .task-category {
+            font-size: 12px;
+            color: var(--text-secondary);
+            background: var(--bg-secondary);
+            padding: 2px 8px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        
+        .task-price {
+            font-size: 18px;
+            font-weight: 700;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .task-description {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+        
+        .task-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .task-time {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .task-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .no-tasks {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+        
+        .no-tasks-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+        
+        /* Модальное окно задания */
+        .task-modal-content {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 24px;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .task-modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .task-modal-category {
+            display: inline-block;
+            background: var(--bg-secondary);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        
+        .task-modal-price {
+            font-size: 24px;
+            font-weight: 800;
+            margin: 16px 0;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+        }
+        
+        .task-modal-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        
+        .task-modal-details {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .task-detail {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .task-detail:last-child {
+            margin-bottom: 0;
+        }
+        
+        .task-detail-label {
+            color: var(--text-secondary);
+        }
+        
+        .task-detail-value {
+            font-weight: 600;
+        }
+        
+        .task-modal-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .task-modal-cancel {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            padding: 12px;
+            border-radius: 12px;
+            flex: 1;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .task-modal-start {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            flex: 1;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        /* Стили для подтверждения задания */
+        .confirmation-task {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            margin-bottom: 16px;
+        }
+        
+        .confirmation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .confirmation-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .confirmation-price {
+            font-size: 18px;
+            font-weight: 700;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .confirmation-question {
+            font-size: 14px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        .confirmation-buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .confirmation-no {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            padding: 10px;
+            border-radius: 10px;
+            flex: 1;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .confirmation-yes {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            flex: 1;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .confirmation-rejected {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 12px;
+        }
+        
+        .confirmation-rejected-text {
+            color: var(--error);
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .confirmation-support {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        /* Стили для панели администратора */
+        .admin-panel {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+        
+        .admin-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-align: center;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .admin-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .admin-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .admin-form {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .admin-input {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+            color: var(--text-primary);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        
+        .admin-textarea {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+            color: var(--text-primary);
+            font-size: 14px;
+            margin-bottom: 12px;
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .admin-submit {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .admin-task-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .admin-task-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border);
+        }
+        
+        .admin-task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .admin-task-title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .admin-task-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .admin-task-delete {
+            background: var(--error);
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .admin-task-approve {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .admin-task-reject {
+            background: var(--error);
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
         .fade-in {
             animation: fadeIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
@@ -728,25 +1562,47 @@
                 transform: translateY(0);
             }
         }
+        
+        @media (min-width: 768px) {
+            .profile-stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .referral-stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .about-features {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .tasks-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .admin-buttons {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <header class="header fade-in">
-            <div class="logo">
+            <div class="logo" onclick="showMainTab()">
                 <div class="logo-text">LinkGold</div>
             </div>
             <div class="slogan">Монетизируйте вашу активность</div>
         </header>
 
         <main class="main-content">
+            <!-- Вкладка главной страницы -->
             <div id="main-tab" class="tab-content active">
                 <!-- Герой баннер с видео -->
                 <div class="hero-banner fade-in">
                     <video autoplay muted loop playsinline>
-                        <!-- ВСТАВЬТЕ СВОЮ ССЫЛКУ НА ВИДЕО ЗДЕСЬ -->
-                        <source src="https://assets.mixkit.co/videos/preview/mixkit-businessman-using-mobile-phone-close-up-43255-large.mp4" type="video/mp4">
+                        <source src="unwatermark_Awards Nomination Promo Kit_free.mp4" type="video/mp4">
                     </video>
                 </div>
 
@@ -768,7 +1624,6 @@
                         <div class="stat-icon">
                             <div class="video-container">
                                 <video class="video-icon" autoplay muted loop playsinline>
-                                    <!-- ВОССТАНОВЛЕННОЕ ВИДЕО ПОДДЕРЖКИ -->
                                     <source src="support-video-Picsart-BackgroundRemover.mp4" type="video/mp4">
                                 </video>
                             </div>
@@ -807,31 +1662,219 @@
 
                 <!-- Кнопка перехода к заданиям -->
                 <div class="tasks-button-container fade-in">
-                    <button class="tasks-btn" onclick="showTasks()">
+                    <button class="tasks-btn" onclick="showTasksTab()">
                         Смотреть все задания
                     </button>
+                </div>
+
+                <!-- Панель администратора (только для главного админа) -->
+                <div id="admin-panel" class="admin-panel fade-in" style="display: none;">
+                    <div class="admin-title">Панель администратора</div>
+                    <div class="admin-buttons">
+                        <button class="admin-btn" onclick="showAddTaskForm()">Добавить задание</button>
+                        <button class="admin-btn" onclick="showCheckTasks()">Проверка заданий</button>
+                        <button class="admin-btn" id="admin-management-btn" onclick="showAdminManagement()">Управление админами</button>
+                    </div>
+                    
+                    <!-- Форма добавления задания -->
+                    <div id="add-task-form" class="admin-form" style="display: none;">
+                        <input type="text" class="admin-input" id="task-title" placeholder="Название задания">
+                        <select class="admin-input" id="task-category">
+                            <option value="social">Соцсети</option>
+                            <option value="subscribe">Подписки</option>
+                            <option value="view">Просмотры</option>
+                            <option value="comment">Комментарии</option>
+                            <option value="repost">Репосты</option>
+                        </select>
+                        <input type="text" class="admin-input" id="task-price" placeholder="Цена (в рублях)">
+                        <input type="text" class="admin-input" id="task-time" placeholder="Время выполнения">
+                        <input type="text" class="admin-input" id="task-link" placeholder="Ссылка для выполнения">
+                        <textarea class="admin-textarea" id="task-description" placeholder="Описание задания"></textarea>
+                        <button class="admin-submit" onclick="addTask()">Добавить задание</button>
+                    </div>
+                    
+                    <!-- Список заданий на проверку -->
+                    <div id="check-tasks" class="admin-task-list" style="display: none;">
+                        <!-- Задания будут добавлены через JavaScript -->
+                    </div>
+                    
+                    <!-- Управление админами -->
+                    <div id="admin-management" class="admin-form" style="display: none;">
+                        <input type="text" class="admin-input" id="admin-username" placeholder="Username пользователя в TG">
+                        <div style="display: flex; gap: 10px;">
+                            <button class="admin-submit" style="background: var(--success);" onclick="hireAdmin()">Нанять админа</button>
+                            <button class="admin-submit" style="background: var(--error);" onclick="fireAdmin()">Удалить админа</button>
+                        </div>
+                        <div id="admin-list" style="margin-top: 16px;">
+                            <!-- Список админов будет добавлен через JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Вкладка заданий -->
+            <div id="tasks-tab" class="tab-content tasks-tab">
+                <div class="tasks-tabs">
+                    <div class="task-tab active" onclick="showTaskTab('new')">Новые задания</div>
+                    <div class="task-tab" id="confirmation-tab" onclick="showTaskTab('confirmation')">Подтверждение задания</div>
+                    <div class="task-tab" onclick="showTaskTab('completed')">Выполненные задания</div>
+                </div>
+                
+                <div class="search-container fade-in">
+                    <div class="search-icon">🔍</div>
+                    <input type="text" class="search-input" id="task-search" placeholder="Поиск заданий...">
+                </div>
+                
+                <div class="filters-container fade-in">
+                    <button class="filter-btn active" data-filter="all">Все</button>
+                    <button class="filter-btn" data-filter="social">Соцсети</button>
+                    <button class="filter-btn" data-filter="subscribe">Подписки</button>
+                    <button class="filter-btn" data-filter="view">Просмотры</button>
+                    <button class="filter-btn" data-filter="comment">Комментарии</button>
+                    <button class="filter-btn" data-filter="repost">Репосты</button>
+                </div>
+                
+                <!-- Новые задания -->
+                <div id="new-tasks" class="tasks-grid">
+                    <!-- Задания будут добавлены через JavaScript -->
+                </div>
+                
+                <!-- Задания на подтверждение -->
+                <div id="confirmation-tasks" class="tasks-grid" style="display: none;">
+                    <!-- Задания будут добавлены через JavaScript -->
+                </div>
+                
+                <!-- Выполненные задания -->
+                <div id="completed-tasks" class="tasks-grid" style="display: none;">
+                    <!-- Задания будут добавлены через JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Вкладка профиля -->
+            <div id="profile-tab" class="tab-content">
+                <!-- Заголовок профиля -->
+                <div class="profile-header fade-in">
+                    <div class="profile-avatar">
+                        <video autoplay muted loop playsinline>
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-handsome-man-smiling-43385-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="profile-info">
+                        <div class="profile-name" id="username">@username</div>
+                        <div class="profile-id">TG: <span id="user-tg">@user_tg</span></div>
+                        <div class="profile-level" onclick="showLevelInfo()">Уровень 0</div>
+                    </div>
+                </div>
+                
+                <!-- Статистика профиля -->
+                <div class="profile-stats fade-in">
+                    <div class="profile-stat">
+                        <div class="stat-value">0 ₽</div>
+                        <div class="stat-label">Баланс</div>
+                    </div>
+                    <div class="profile-stat">
+                        <div class="stat-value">0</div>
+                        <div class="stat-label">Выполнено</div>
+                    </div>
+                    <div class="profile-stat">
+                        <div class="stat-value">0</div>
+                        <div class="stat-label">Активных</div>
+                    </div>
+                    <div class="profile-stat">
+                        <div class="stat-value">0%</div>
+                        <div class="stat-label">Качество</div>
+                    </div>
+                </div>
+                
+                <!-- Прогресс уровня -->
+                <div class="level-progress fade-in">
+                    <div class="level-title">
+                        <span class="level-name">Прогресс уровня</span>
+                        <span class="level-count">0/10 заданий</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="level-progress-bar"></div>
+                    </div>
+                    <div class="level-info">
+                        Выполните 10 заданий для достижения 1 уровня
+                    </div>
+                </div>
+                
+                <!-- Реферальная система -->
+                <div class="referral-system fade-in">
+                    <div class="referral-title">Реферальная система</div>
+                    
+                    <div class="referral-code">
+                        <div class="referral-label">Ваш реферальный код</div>
+                        <div class="code-value" id="referral-code">GOLD123456</div>
+                        <button class="copy-btn" onclick="copyReferralCode()">Скопировать код</button>
+                    </div>
+                    
+                    <div class="referral-stats">
+                        <div class="referral-stat">
+                            <div class="referral-value" id="ref-invited">0</div>
+                            <div class="referral-label">Приглашено</div>
+                        </div>
+                        <div class="referral-stat">
+                            <div class="referral-value" id="ref-earned">0 ₽</div>
+                            <div class="referral-label">Заработано</div>
+                        </div>
+                    </div>
+                    
+                    <div class="referral-info">
+                        Приглашайте друзей и получайте 10% от их заработка!
+                    </div>
+                </div>
+                
+                <!-- Действия профиля -->
+                <div class="profile-section fade-in">
+                    <div class="section-title">Действия</div>
+                    <div class="profile-actions">
+                        <div class="profile-action" onclick="showWithdrawModal()">
+                            <div class="action-icon">💳</div>
+                            <div class="action-text">Вывод средств</div>
+                            <div class="action-arrow">›</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Настройки -->
+                <div class="profile-section fade-in">
+                    <div class="section-title">Настройки</div>
+                    <div class="profile-actions">
+                        <div class="profile-action" onclick="openAdminChat()">
+                            <div class="action-icon">🛟</div>
+                            <div class="action-text">Поддержка</div>
+                            <div class="action-arrow">›</div>
+                        </div>
+                        <div class="profile-action" onclick="showAboutPage()">
+                            <div class="action-icon">ℹ️</div>
+                            <div class="action-text">О приложении</div>
+                            <div class="action-arrow">›</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
 
         <!-- Навигация -->
         <nav class="bottom-nav">
-            <div class="nav-item active">
+            <div class="nav-item active" onclick="showMainTab()">
                 <div class="nav-icon">🏠</div>
                 <div class="nav-label">Главная</div>
             </div>
-            <div class="nav-item">
+            <div class="nav-item" onclick="showTasksTab()">
                 <div class="nav-icon">📋</div>
                 <div class="nav-label">Задания</div>
             </div>
-            <div class="nav-item">
+            <div class="nav-item" onclick="showProfileTab()">
                 <div class="nav-icon">👤</div>
                 <div class="nav-label">Профиль</div>
             </div>
         </nav>
     </div>
 
-    <!-- Модальное окно баланса -->
+    <!-- Модальные окна -->
     <div class="modal" id="balance-modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -845,7 +1888,6 @@
         </div>
     </div>
 
-    <!-- Модальное окно "Как работает" -->
     <div class="modal" id="how-it-works-modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -858,7 +1900,7 @@
                 <p class="info-text">Основные принципы работы:</p>
                 <ul class="info-list">
                     <li><span class="highlight">Выбирайте задания</span> из доступных в вашем профиле</li>
-                    <li><span class="highlight">Выполняйте</span> их согласно инструкциям</li>
+                    <li><span class="highlight">Выполняйте</span> их согласно инструкции</li>
                     <li><span class="highlight">Получайте оплату</span> сразу после проверки</li>
                     <li><span class="highlight">Выводите средства</span> удобным способом</li>
                 </ul>
@@ -874,7 +1916,187 @@
         </div>
     </div>
 
-    <!-- Чат с админом -->
+    <div class="modal" id="level-info-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">📊 Система уровней</div>
+                <button class="modal-close" onclick="closeModal('level-info-modal')">×</button>
+            </div>
+            <div class="modal-body">
+                <p class="info-text">Уровень повышается за каждые 10 выполненных заданий:</p>
+                
+                <div class="level-list">
+                    <div class="level-item">
+                        <span class="level-number">1 уровень</span>
+                        <span class="level-requirement">0-10 заданий</span>
+                    </div>
+                    <div class="level-item">
+                        <span class="level-number">2 уровень</span>
+                        <span class="level-requirement">11-20 заданий</span>
+                    </div>
+                    <div class="level-item">
+                        <span class="level-number">3 уровень</span>
+                        <span class="level-requirement">21-30 заданий</span>
+                    </div>
+                    <div class="level-item">
+                        <span class="level-number">4 уровень</span>
+                        <span class="level-requirement">31-40 заданий</span>
+                    </div>
+                    <div class="level-item">
+                        <span class="level-number">5 уровень</span>
+                        <span class="level-requirement">41-50 заданий</span>
+                    </div>
+                </div>
+                
+                <p class="info-text">Чем выше ваш уровень, тем больше заданий и выше оплата!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="referral-info-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">👥 Реферальная программа</div>
+                <button class="modal-close" onclick="closeModal('referral-info-modal')">×</button>
+            </div>
+            <div class="modal-body">
+                <p class="info-text">Приглашайте друзей и получайте бонусы!</p>
+                
+                <div class="info-text">
+                    <strong>Как это работает:</strong>
+                    <ul>
+                        <li>Делитесь своим реферальным кодом с друзьями</li>
+                        <li>Они регистрируются по вашему коду</li>
+                        <li>Вы получаете 10% от их заработка</li>
+                        <li>Бонусы начисляются мгновенно</li>
+                    </ul>
+                </div>
+                
+                <div class="info-text">
+                    <strong>Ваши преимущества:</strong>
+                    <ul>
+                        <li>Пассивный заработок без усилий</li>
+                        <li>Нет ограничений на количество приглашенных</li>
+                        <li>Вывод реферальных бонусов доступен сразу</li>
+                    </ul>
+                </div>
+                
+                <div class="referral-code">
+                    <div class="referral-label">Ваш реферальный код</div>
+                    <div class="code-value" id="modal-referral-code">GOLD123456</div>
+                    <button class="copy-btn" onclick="copyReferralCode()">Скопировать код</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="about-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">ℹ️ О LinkGold</div>
+                <button class="modal-close" onclick="closeModal('about-modal')">×</button>
+            </div>
+            <div class="modal-body">
+                <p class="info-text">LinkGold — это инновационная платформа для заработка, которая позволяет каждому пользователю монетизировать свою активность в интернете. Мы создали удобный и прозрачный сервис, где вы можете выполнять интересные задания и получать за это достойное вознаграждение.</p>
+                
+                <p class="info-text">Наша миссия — предоставить возможность дополнительного заработка для всех, кто готов проявить активность и выполнять простые задачи. Мы верим, что каждый должен иметь возможность монетизировать свое время и усилия, проведенные в интернете.</p>
+                
+                <div class="about-features">
+                    <div class="about-feature">
+                        <div class="feature-icon">🚀</div>
+                        <div class="feature-text">Быстрый старт</div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="feature-icon">💎</div>
+                        <div class="feature-text">Честные условия</div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="feature-icon">🛡️</div>
+                        <div class="feature-text">Надежная защита</div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="feature-icon">📈</div>
+                        <div class="feature-text">Постоянный рост</div>
+                    </div>
+                </div>
+                
+                <p class="info-text">Мы постоянно работаем над улучшением сервиса, добавляем новые задания и возможности для заработка. Наша команда заботится о каждом пользователе и стремится создать лучшие условия для взаимовыгодного сотрудничества.</p>
+                
+                <div class="about-footer">
+                    LinkGold © 2023. Все права защищены.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="task-modal">
+        <div class="modal-content task-modal-content">
+            <div class="modal-header">
+                <div class="task-modal-title" id="task-modal-title">Название задания</div>
+                <button class="modal-close" onclick="closeModal('task-modal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="task-modal-category" id="task-modal-category">Категория</div>
+                <div class="task-modal-price" id="task-modal-price">0 ₽</div>
+                <div class="task-modal-description" id="task-modal-description">Описание задания</div>
+                
+                <div class="task-modal-details">
+                    <div class="task-detail">
+                        <span class="task-detail-label">Время выполнения:</span>
+                        <span class="task-detail-value" id="task-modal-time">5 мин</span>
+                    </div>
+                    <div class="task-detail">
+                        <span class="task-detail-label">Статус:</span>
+                        <span class="task-detail-value" id="task-modal-status">Доступно</span>
+                    </div>
+                    <div class="task-detail">
+                        <span class="task-detail-label">Осталось:</span>
+                        <span class="task-detail-value" id="task-modal-available">15 заданий</span>
+                    </div>
+                </div>
+                
+                <div class="task-modal-buttons">
+                    <button class="task-modal-cancel" onclick="closeModal('task-modal')">Отмена</button>
+                    <button class="task-modal-start" onclick="startTask()">Начать задание</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="confirmation-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">📸 Подтверждение задания</div>
+                <button class="modal-close" onclick="closeModal('confirmation-modal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="confirmation-task">
+                    <div class="confirmation-header">
+                        <div class="confirmation-title" id="confirmation-task-title">Название задания</div>
+                        <div class="confirmation-price" id="confirmation-task-price">0 ₽</div>
+                    </div>
+                    <div class="confirmation-question">Вы выполнили это задание?</div>
+                    <div class="confirmation-buttons">
+                        <button class="confirmation-no" onclick="cancelConfirmation()">Нет</button>
+                        <button class="confirmation-yes" onclick="confirmTask()">Да</button>
+                    </div>
+                </div>
+                
+                <div id="confirmation-form" style="display: none;">
+                    <div style="margin-bottom: 16px;">
+                        <label style="display: block; margin-bottom: 8px; font-size: 14px;">Загрузите фото выполненного задания:</label>
+                        <input type="file" id="task-photo" accept="image/*" style="width: 100%; margin-bottom: 12px;">
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <label style="display: block; margin-bottom: 8px; font-size: 14px;">Комментарий (необязательно):</label>
+                        <textarea id="task-comment" placeholder="Опишите выполнение задания..." style="width: 100%; height: 80px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 10px; padding: 12px; color: var(--text-primary);"></textarea>
+                    </div>
+                    <button class="btn btn-primary btn-full" onclick="submitTaskForReview()">Отправить на проверку</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="chat-modal" id="admin-chat">
         <div class="chat-header">
             <div class="chat-avatar">
@@ -884,7 +2106,7 @@
             </div>
             <div class="chat-info">
                 <div class="chat-name">Администратор LinkGold</div>
-                <div class="chat-status">онлайн</div>
+                <div class="chat-status">TG: @linkgold_admin</div>
             </div>
             <button class="chat-close" onclick="closeChat()">×</button>
         </div>
@@ -899,7 +2121,6 @@
         </div>
     </div>
 
-    <!-- Модальное окно с ценами -->
     <div class="prices-modal" id="prices-modal">
         <div class="prices-content">
             <div class="prices-title">💰 Стоимость размещения</div>
@@ -928,11 +2149,700 @@
     </div>
 
     <script>
+        // Данные пользователя
+        let userData = {
+            username: "@username",
+            userTg: "@user_tg",
+            userId: Math.floor(100000 + Math.random() * 900000),
+            balance: 0,
+            completedTasks: 0,
+            activeTasks: 0,
+            quality: 0,
+            level: 0,
+            levelProgress: 0,
+            referrals: {
+                invited: 0,
+                earned: 0
+            },
+            isAdmin: false,
+            isMainAdmin: false
+        };
+
+        // Данные заданий
+        let tasksData = [
+            {
+                id: 1,
+                title: "Подписка на Telegram канал",
+                category: "subscribe",
+                price: 15,
+                description: "Подпишитесь на наш Telegram канал и оставайтесь подписанным минимум 3 дня.",
+                time: "5 мин",
+                status: "Доступно",
+                available: 15,
+                completed: false,
+                link: "https://t.me/linkgold_channel",
+                adminId: "8036875641",
+                adminName: "Главный администратор"
+            },
+            {
+                id: 2,
+                title: "Просмотр YouTube видео",
+                category: "view",
+                price: 10,
+                description: "Посмотрите видео на YouTube до конца и поставьте лайк.",
+                time: "10 мин",
+                status: "Доступно",
+                available: 20,
+                completed: false,
+                link: "https://youtube.com/watch?v=example",
+                adminId: "8036875641",
+                adminName: "Главный администратор"
+            }
+        ];
+
+        // Задания на подтверждение
+        let confirmationTasks = [];
+
+        // Выполненные задания
+        let completedTasks = [];
+
+        // Задания на проверку у администратора
+        let tasksForReview = [];
+
+        // Администраторы
+        let admins = [
+            {
+                id: "8036875641",
+                username: "@linkgold_admin",
+                name: "Главный администратор",
+                isMain: true
+            }
+        ];
+
+        // Текущее выбранное задание
+        let currentTask = null;
+        let currentTaskTab = 'new';
+
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
-            // Баланс остается 0 ₽
-            document.getElementById('user-balance-main').textContent = '0 ₽';
+            // Загрузка данных пользователя
+            loadUserData();
+            
+            // Проверка, является ли пользователь главным админом
+            if (userData.userTg === "@linkgold_admin") {
+                userData.isAdmin = true;
+                userData.isMainAdmin = true;
+                document.getElementById('admin-panel').style.display = 'block';
+            }
+            
+            // Загрузка заданий
+            renderTasks('all');
+            
+            // Настройка фильтров
+            setupFilters();
+            
+            // Настройка поиска
+            setupSearch();
+            
+            // Обновление интерфейса
+            updateUserInterface();
         });
+
+        // Загрузка данных пользователя
+        function loadUserData() {
+            // Загрузка из localStorage или установка значений по умолчанию
+            const savedData = localStorage.getItem('linkgold_user_data');
+            
+            if (savedData) {
+                userData = JSON.parse(savedData);
+            }
+        }
+
+        // Сохранение данных пользователя
+        function saveUserData() {
+            localStorage.setItem('linkgold_user_data', JSON.stringify(userData));
+        }
+
+        // Обновление интерфейса пользователя
+        function updateUserInterface() {
+            document.getElementById('username').textContent = userData.username;
+            document.getElementById('user-tg').textContent = userData.userTg;
+            document.getElementById('user-balance-main').textContent = userData.balance + ' ₽';
+            document.getElementById('ref-invited').textContent = userData.referrals.invited;
+            document.getElementById('ref-earned').textContent = userData.referrals.earned + ' ₽';
+            document.getElementById('referral-code').textContent = 'GOLD' + userData.userId;
+            document.getElementById('modal-referral-code').textContent = 'GOLD' + userData.userId;
+            
+            // Обновление прогресса уровня
+            const progressPercent = (userData.levelProgress / 10) * 100;
+            document.getElementById('level-progress-bar').style.width = progressPercent + '%';
+            document.querySelector('.level-count').textContent = userData.levelProgress + '/10 заданий';
+            document.querySelector('.profile-level').textContent = 'Уровень ' + userData.level;
+            
+            // Обновление статистики профиля
+            const statElements = document.querySelectorAll('.profile-stat');
+            statElements[0].querySelector('.stat-value').textContent = userData.balance + ' ₽';
+            statElements[1].querySelector('.stat-value').textContent = userData.completedTasks;
+            statElements[2].querySelector('.stat-value').textContent = userData.activeTasks;
+            statElements[3].querySelector('.stat-value').textContent = userData.quality + '%';
+            
+            // Обновление вкладки подтверждения заданий
+            updateConfirmationTab();
+        }
+
+        // Обновление вкладки подтверждения заданий
+        function updateConfirmationTab() {
+            const confirmationTab = document.getElementById('confirmation-tab');
+            if (confirmationTasks.length > 0) {
+                confirmationTab.classList.add('notification');
+            } else {
+                confirmationTab.classList.remove('notification');
+            }
+        }
+
+        // Функции для переключения вкладок
+        function showMainTab() {
+            document.getElementById('main-tab').classList.add('active');
+            document.getElementById('tasks-tab').classList.remove('active');
+            document.getElementById('profile-tab').classList.remove('active');
+            updateNavActiveState('Главная');
+        }
+        
+        function showTasksTab() {
+            document.getElementById('main-tab').classList.remove('active');
+            document.getElementById('tasks-tab').classList.add('active');
+            document.getElementById('profile-tab').classList.remove('active');
+            updateNavActiveState('Задания');
+            showTaskTab(currentTaskTab);
+        }
+        
+        function showProfileTab() {
+            document.getElementById('main-tab').classList.remove('active');
+            document.getElementById('tasks-tab').classList.remove('active');
+            document.getElementById('profile-tab').classList.add('active');
+            updateNavActiveState('Профиль');
+        }
+        
+        function showTaskTab(tab) {
+            currentTaskTab = tab;
+            
+            // Скрыть все вкладки заданий
+            document.getElementById('new-tasks').style.display = 'none';
+            document.getElementById('confirmation-tasks').style.display = 'none';
+            document.getElementById('completed-tasks').style.display = 'none';
+            
+            // Показать выбранную вкладку
+            if (tab === 'new') {
+                document.getElementById('new-tasks').style.display = 'grid';
+                renderNewTasks();
+            } else if (tab === 'confirmation') {
+                document.getElementById('confirmation-tasks').style.display = 'block';
+                renderConfirmationTasks();
+            } else if (tab === 'completed') {
+                document.getElementById('completed-tasks').style.display = 'grid';
+                renderCompletedTasks();
+            }
+            
+            // Обновить активную вкладку
+            const tabElements = document.querySelectorAll('.task-tab');
+            tabElements.forEach(tabEl => tabEl.classList.remove('active'));
+            document.querySelector(`.task-tab:nth-child(${tab === 'new' ? 1 : tab === 'confirmation' ? 2 : 3})`).classList.add('active');
+        }
+        
+        function updateNavActiveState(activeLabel) {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                if (item.querySelector('.nav-label').textContent === activeLabel) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        // Рендер новых заданий
+        function renderNewTasks(filter = 'all', searchQuery = '') {
+            const tasksContainer = document.getElementById('new-tasks');
+            tasksContainer.innerHTML = '';
+            
+            let filteredTasks = tasksData.filter(task => !task.completed);
+            
+            // Применение фильтра
+            if (filter !== 'all') {
+                filteredTasks = filteredTasks.filter(task => task.category === filter);
+            }
+            
+            // Применение поиска
+            if (searchQuery) {
+                const query = searchQuery.toLowerCase();
+                filteredTasks = filteredTasks.filter(task => 
+                    task.title.toLowerCase().includes(query) || 
+                    task.description.toLowerCase().includes(query)
+                );
+            }
+            
+            if (filteredTasks.length === 0) {
+                tasksContainer.innerHTML = `
+                    <div class="no-tasks">
+                        <div class="no-tasks-icon">🔍</div>
+                        <div>Задания не найдены</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            filteredTasks.forEach(task => {
+                const taskElement = document.createElement('div');
+                taskElement.className = 'task-card fade-in';
+                taskElement.setAttribute('data-task-id', task.id);
+                taskElement.innerHTML = `
+                    <div class="task-header">
+                        <div>
+                            <div class="task-title">${task.title}</div>
+                            <span class="task-category">${getCategoryName(task.category)}</span>
+                        </div>
+                        <div class="task-price">${task.price} ₽</div>
+                    </div>
+                    <div class="task-description">${task.description}</div>
+                    <div class="task-footer">
+                        <div class="task-time">${task.time}</div>
+                        <button class="task-btn" onclick="showTaskModal(${task.id})">Выполнить</button>
+                    </div>
+                `;
+                tasksContainer.appendChild(taskElement);
+            });
+        }
+
+        // Рендер заданий на подтверждение
+        function renderConfirmationTasks() {
+            const tasksContainer = document.getElementById('confirmation-tasks');
+            tasksContainer.innerHTML = '';
+            
+            if (confirmationTasks.length === 0) {
+                tasksContainer.innerHTML = `
+                    <div class="no-tasks">
+                        <div class="no-tasks-icon">✅</div>
+                        <div>Нет заданий на подтверждение</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            confirmationTasks.forEach(task => {
+                const taskElement = document.createElement('div');
+                taskElement.className = 'confirmation-task fade-in';
+                taskElement.innerHTML = `
+                    <div class="confirmation-header">
+                        <div class="confirmation-title">${task.title}</div>
+                        <div class="confirmation-price">${task.price} ₽</div>
+                    </div>
+                    <div class="confirmation-question">Вы выполнили это задание?</div>
+                    <div class="confirmation-buttons">
+                        <button class="confirmation-no" onclick="cancelTaskConfirmation(${task.id})">Нет</button>
+                        <button class="confirmation-yes" onclick="showConfirmationForm(${task.id})">Да</button>
+                    </div>
+                    ${task.rejected ? `
+                    <div class="confirmation-rejected">
+                        <div class="confirmation-rejected-text">Ваше задание отклонено</div>
+                        <button class="confirmation-support" onclick="openAdminChat()">Написать в поддержку</button>
+                    </div>
+                    ` : ''}
+                `;
+                tasksContainer.appendChild(taskElement);
+            });
+        }
+
+        // Рендер выполненных заданий
+        function renderCompletedTasks() {
+            const tasksContainer = document.getElementById('completed-tasks');
+            tasksContainer.innerHTML = '';
+            
+            if (completedTasks.length === 0) {
+                tasksContainer.innerHTML = `
+                    <div class="no-tasks">
+                        <div class="no-tasks-icon">🏆</div>
+                        <div>Вы еще не выполнили ни одного задания</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            completedTasks.forEach(task => {
+                const taskElement = document.createElement('div');
+                taskElement.className = 'task-card fade-in';
+                taskElement.innerHTML = `
+                    <div class="task-header">
+                        <div>
+                            <div class="task-title">${task.title}</div>
+                            <span class="task-category">${getCategoryName(task.category)}</span>
+                        </div>
+                        <div class="task-price">${task.price} ₽</div>
+                    </div>
+                    <div class="task-description">${task.description}</div>
+                    <div class="task-footer">
+                        <div class="task-time">Выполнено</div>
+                        <span style="color: var(--success); font-weight: 600;">✅</span>
+                    </div>
+                `;
+                tasksContainer.appendChild(taskElement);
+            });
+        }
+
+        // Показать модальное окно задания
+        function showTaskModal(taskId) {
+            const task = tasksData.find(t => t.id === taskId);
+            if (task) {
+                currentTask = task;
+                
+                document.getElementById('task-modal-title').textContent = task.title;
+                document.getElementById('task-modal-category').textContent = getCategoryName(task.category);
+                document.getElementById('task-modal-price').textContent = task.price + ' ₽';
+                document.getElementById('task-modal-description').textContent = task.description;
+                document.getElementById('task-modal-time').textContent = task.time;
+                document.getElementById('task-modal-status').textContent = task.status;
+                document.getElementById('task-modal-available').textContent = task.available + ' заданий';
+                
+                document.getElementById('task-modal').classList.add('active');
+            }
+        }
+
+        // Начать выполнение задания
+        function startTask() {
+            if (currentTask) {
+                // Открыть ссылку задания
+                window.open(currentTask.link, '_blank');
+                
+                // Добавить задание в список на подтверждение
+                const confirmationTask = {
+                    ...currentTask,
+                    startTime: new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' }),
+                    rejected: false
+                };
+                
+                confirmationTasks.push(confirmationTask);
+                
+                // Обновляем статистику пользователя
+                userData.activeTasks++;
+                
+                // Сохраняем данные
+                saveUserData();
+                updateUserInterface();
+                
+                // Закрываем модальное окно
+                closeModal('task-modal');
+                
+                // Показать уведомление
+                alert('Задание начато! После выполнения вернитесь в приложение для подтверждения.');
+            }
+        }
+
+        // Отмена подтверждения задания
+        function cancelTaskConfirmation(taskId) {
+            const taskIndex = confirmationTasks.findIndex(t => t.id === taskId);
+            if (taskIndex !== -1) {
+                confirmationTasks.splice(taskIndex, 1);
+                userData.activeTasks--;
+                saveUserData();
+                updateUserInterface();
+                renderConfirmationTasks();
+            }
+        }
+
+        // Показать форму подтверждения задания
+        function showConfirmationForm(taskId) {
+            const task = confirmationTasks.find(t => t.id === taskId);
+            if (task) {
+                currentTask = task;
+                
+                document.getElementById('confirmation-task-title').textContent = task.title;
+                document.getElementById('confirmation-task-price').textContent = task.price + ' ₽';
+                document.getElementById('confirmation-form').style.display = 'block';
+                
+                document.getElementById('confirmation-modal').classList.add('active');
+            }
+        }
+
+        // Отправить задание на проверку
+        function submitTaskForReview() {
+            if (currentTask) {
+                // Добавить задание в список на проверку
+                const taskForReview = {
+                    ...currentTask,
+                    userId: userData.userId,
+                    userTg: userData.userTg,
+                    photo: document.getElementById('task-photo').files[0] ? URL.createObjectURL(document.getElementById('task-photo').files[0]) : null,
+                    comment: document.getElementById('task-comment').value,
+                    submitTime: new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })
+                };
+                
+                tasksForReview.push(taskForReview);
+                
+                // Удалить задание из списка на подтверждение
+                const taskIndex = confirmationTasks.findIndex(t => t.id === currentTask.id);
+                if (taskIndex !== -1) {
+                    confirmationTasks.splice(taskIndex, 1);
+                }
+                
+                // Обновляем интерфейс
+                updateUserInterface();
+                renderConfirmationTasks();
+                
+                // Закрываем модальное окно
+                closeModal('confirmation-modal');
+                
+                // Показать уведомление
+                alert('Задание отправлено на проверку! Ожидайте подтверждения администратора.');
+            }
+        }
+
+        // Настройка фильтров
+        function setupFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Убираем активный класс у всех кнопок
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Добавляем активный класс текущей кнопке
+                    button.classList.add('active');
+                    
+                    // Применяем фильтр
+                    const filter = button.getAttribute('data-filter');
+                    const searchQuery = document.getElementById('task-search').value;
+                    renderNewTasks(filter, searchQuery);
+                });
+            });
+        }
+
+        // Настройка поиска
+        function setupSearch() {
+            const searchInput = document.getElementById('task-search');
+            
+            searchInput.addEventListener('input', () => {
+                const searchQuery = searchInput.value;
+                const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+                renderNewTasks(activeFilter, searchQuery);
+            });
+        }
+
+        // Получение имени категории
+        function getCategoryName(category) {
+            const categories = {
+                'social': 'Соцсети',
+                'subscribe': 'Подписки',
+                'view': 'Просмотры',
+                'comment': 'Комментарии',
+                'repost': 'Репосты'
+            };
+            return categories[category] || category;
+        }
+
+        // Функции для администратора
+        function showAddTaskForm() {
+            document.getElementById('add-task-form').style.display = 'block';
+            document.getElementById('check-tasks').style.display = 'none';
+            document.getElementById('admin-management').style.display = 'none';
+        }
+
+        function showCheckTasks() {
+            document.getElementById('add-task-form').style.display = 'none';
+            document.getElementById('check-tasks').style.display = 'block';
+            document.getElementById('admin-management').style.display = 'none';
+            
+            renderTasksForReview();
+        }
+
+        function showAdminManagement() {
+            document.getElementById('add-task-form').style.display = 'none';
+            document.getElementById('check-tasks').style.display = 'none';
+            document.getElementById('admin-management').style.display = 'block';
+            
+            renderAdminList();
+        }
+
+        function addTask() {
+            const title = document.getElementById('task-title').value;
+            const category = document.getElementById('task-category').value;
+            const price = parseInt(document.getElementById('task-price').value);
+            const time = document.getElementById('task-time').value;
+            const link = document.getElementById('task-link').value;
+            const description = document.getElementById('task-description').value;
+            
+            if (title && category && price && time && link && description) {
+                const newTask = {
+                    id: tasksData.length + 1,
+                    title,
+                    category,
+                    price,
+                    description,
+                    time,
+                    status: "Доступно",
+                    available: 10,
+                    completed: false,
+                    link,
+                    adminId: userData.userTg,
+                    adminName: userData.username
+                };
+                
+                tasksData.push(newTask);
+                
+                // Очистить форму
+                document.getElementById('task-title').value = '';
+                document.getElementById('task-price').value = '';
+                document.getElementById('task-time').value = '';
+                document.getElementById('task-link').value = '';
+                document.getElementById('task-description').value = '';
+                
+                // Обновить список заданий
+                renderNewTasks();
+                
+                alert('Задание успешно добавлено!');
+            } else {
+                alert('Заполните все поля!');
+            }
+        }
+
+        function renderTasksForReview() {
+            const container = document.getElementById('check-tasks');
+            container.innerHTML = '';
+            
+            // Фильтруем задания по администратору
+            const adminTasks = tasksForReview.filter(task => 
+                userData.isMainAdmin || task.adminId === userData.userTg
+            );
+            
+            if (adminTasks.length === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 20px; color: var(--text-secondary);">Нет заданий на проверку</div>';
+                return;
+            }
+            
+            adminTasks.forEach(task => {
+                const taskElement = document.createElement('div');
+                taskElement.className = 'admin-task-item';
+                taskElement.innerHTML = `
+                    <div class="admin-task-header">
+                        <div class="admin-task-title">${task.title}</div>
+                        <div class="admin-task-actions">
+                            <button class="admin-task-approve" onclick="approveTask(${task.id})">Принять</button>
+                            <button class="admin-task-reject" onclick="rejectTask(${task.id})">Отклонить</button>
+                        </div>
+                    </div>
+                    <div>Пользователь: ${task.userTg}</div>
+                    <div>Время отправки: ${task.submitTime}</div>
+                    ${task.comment ? `<div>Комментарий: ${task.comment}</div>` : ''}
+                `;
+                container.appendChild(taskElement);
+            });
+        }
+
+        function approveTask(taskId) {
+            const taskIndex = tasksForReview.findIndex(t => t.id === taskId);
+            if (taskIndex !== -1) {
+                const task = tasksForReview[taskIndex];
+                
+                // Начислить деньги пользователю
+                const userIndex = tasksData.findIndex(t => t.id === taskId);
+                if (userIndex !== -1) {
+                    userData.balance += task.price;
+                    userData.completedTasks++;
+                    userData.levelProgress++;
+                    
+                    // Проверяем, нужно ли повысить уровень
+                    if (userData.levelProgress >= 10) {
+                        userData.level++;
+                        userData.levelProgress = 0;
+                    }
+                    
+                    // Добавить задание в выполненные
+                    completedTasks.push(task);
+                    
+                    // Удалить задание из списка на проверку
+                    tasksForReview.splice(taskIndex, 1);
+                    
+                    // Сохранить данные
+                    saveUserData();
+                    updateUserInterface();
+                    renderTasksForReview();
+                    
+                    alert('Задание принято! Деньги начислены пользователю.');
+                }
+            }
+        }
+
+        function rejectTask(taskId) {
+            const taskIndex = tasksForReview.findIndex(t => t.id === taskId);
+            if (taskIndex !== -1) {
+                const task = tasksForReview[taskIndex];
+                
+                // Вернуть задание в список на подтверждение с отметкой об отклонении
+                const confirmationTask = {
+                    ...task,
+                    rejected: true
+                };
+                
+                confirmationTasks.push(confirmationTask);
+                
+                // Удалить задание из списка на проверку
+                tasksForReview.splice(taskIndex, 1);
+                
+                // Обновить интерфейс
+                updateUserInterface();
+                renderTasksForReview();
+                
+                alert('Задание отклонено! Пользователь уведомлен.');
+            }
+        }
+
+        function hireAdmin() {
+            const username = document.getElementById('admin-username').value;
+            if (username) {
+                const newAdmin = {
+                    id: Date.now().toString(),
+                    username,
+                    name: username,
+                    isMain: false
+                };
+                
+                admins.push(newAdmin);
+                document.getElementById('admin-username').value = '';
+                renderAdminList();
+                
+                alert('Администратор успешно нанят!');
+            } else {
+                alert('Введите username пользователя!');
+            }
+        }
+
+        function fireAdmin() {
+            const username = document.getElementById('admin-username').value;
+            if (username) {
+                const adminIndex = admins.findIndex(a => a.username === username && !a.isMain);
+                if (adminIndex !== -1) {
+                    admins.splice(adminIndex, 1);
+                    document.getElementById('admin-username').value = '';
+                    renderAdminList();
+                    
+                    alert('Администратор успешно удален!');
+                } else {
+                    alert('Администратор с таким username не найден или это главный администратор!');
+                }
+            } else {
+                alert('Введите username администратора!');
+            }
+        }
+
+        function renderAdminList() {
+            const container = document.getElementById('admin-list');
+            container.innerHTML = '';
+            
+            admins.forEach(admin => {
+                const adminElement = document.createElement('div');
+                adminElement.className = 'admin-task-item';
+                adminElement.innerHTML = `
+                    <div>${admin.username} ${admin.isMain ? '(Главный)' : ''}</div>
+                `;
+                container.appendChild(adminElement);
+            });
+        }
 
         // Функции модальных окон
         function showBalanceModal() {
@@ -942,21 +2852,26 @@
         function showHowItWorksModal() {
             document.getElementById('how-it-works-modal').classList.add('active');
         }
+        
+        function showLevelInfo() {
+            document.getElementById('level-info-modal').classList.add('active');
+        }
+        
+        function showReferralInfo() {
+            document.getElementById('referral-info-modal').classList.add('active');
+        }
+        
+        function showAboutPage() {
+            document.getElementById('about-modal').classList.add('active');
+        }
 
         function closeModal(modalId) {
             document.getElementById(modalId).classList.remove('active');
         }
 
         function goToProfile() {
-            // Активируем вкладку профиля в навигации
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-                if (item.querySelector('.nav-label').textContent === 'Профиль') {
-                    item.classList.add('active');
-                }
-            });
+            showProfileTab();
             closeModal('balance-modal');
-            alert('Переход в профиль...');
         }
 
         function openAdminChat() {
@@ -978,9 +2893,17 @@
                 document.getElementById('admin-chat').classList.add('active');
             }, 300);
         }
-
-        function showTasks() {
-            alert('Переход к списку заданий...');
+        
+        // Функции для профиля
+        function showWithdrawModal() {
+            alert('Функция вывода средств скоро будет доступна!');
+        }
+        
+        function copyReferralCode() {
+            const code = 'GOLD' + userData.userId;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Реферальный код скопирован: ' + code + '\n\nПоделитесь этим кодом с друзьями!');
+            });
         }
 
         // Навигация
@@ -1001,6 +2924,16 @@
                 messageElement.className = 'message message-user';
                 messageElement.textContent = message;
                 messagesContainer.appendChild(messageElement);
+                
+                // Ответ администратора (симуляция)
+                setTimeout(() => {
+                    const adminMessage = document.createElement('div');
+                    adminMessage.className = 'message message-admin';
+                    adminMessage.textContent = 'Спасибо за ваше сообщение! Мы ответим вам в ближайшее время.';
+                    messagesContainer.appendChild(adminMessage);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 1000);
+                
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
                 input.value = '';
             }
