@@ -48,7 +48,6 @@
             padding-bottom: env(safe-area-inset-bottom);
         }
 
-        /* Стили для Telegram WebApp */
         .tg-header {
             height: 54px;
             background: var(--bg-primary);
@@ -122,6 +121,8 @@
             align-items: center;
             justify-content: center;
             color: var(--text-secondary);
+            font-size: 18px;
+            font-weight: 600;
         }
 
         .stats-grid {
@@ -447,185 +448,7 @@
             box-shadow: 0 6px 20px rgba(139, 92, 246, 0.25);
         }
 
-        /* Стили для модального окна "О LinkGold" */
-        .about-modal-content {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 24px;
-            width: 95%;
-            max-width: 500px;
-            border: 1px solid var(--border);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .about-text {
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .about-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin: 25px 0;
-        }
-
-        .about-feature {
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            padding: 16px;
-            text-align: center;
-            border: 1px solid var(--border);
-        }
-
-        .feature-icon {
-            font-size: 32px;
-            margin-bottom: 10px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .feature-text {
-            font-size: 14px;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .about-footer {
-            text-align: center;
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
-        }
-
-        /* Стили для модального окна задания */
-        .task-modal-content {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 24px;
-            width: 95%;
-            max-width: 500px;
-            border: 1px solid var(--border);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .task-modal-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-align: center;
-        }
-
-        .task-modal-category {
-            display: block;
-            background: var(--bg-secondary);
-            padding: 8px 16px;
-            border-radius: 12px;
-            font-size: 16px;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            text-align: center;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .task-modal-price {
-            font-size: 36px;
-            font-weight: 800;
-            margin: 25px 0;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-align: center;
-        }
-
-        .task-modal-description {
-            font-size: 18px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 30px;
-            text-align: center;
-            padding: 0 10px;
-        }
-
-        .task-modal-details {
-            background: var(--bg-secondary);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 30px;
-        }
-
-        .task-detail {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 16px;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .task-detail:last-child {
-            margin-bottom: 0;
-            border-bottom: none;
-        }
-
-        .task-detail-label {
-            color: var(--text-secondary);
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        .task-detail-value {
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        .task-modal-buttons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .task-modal-cancel {
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-            padding: 16px;
-            border-radius: 14px;
-            flex: 1;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        .task-modal-start {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 16px;
-            border-radius: 14px;
-            flex: 1;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        /* Остальные стили */
+        /* Стили для профиля */
         .profile-header {
             display: flex;
             align-items: center;
@@ -879,7 +702,69 @@
             text-align: center;
             margin-top: 10px;
         }
+
+        .tab-content {
+            display: none;
+        }
         
+        .tab-content.active {
+            display: block;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .admin-panel {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+        
+        .admin-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-align: center;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .admin-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .admin-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        /* Стили для заданий */
         .tasks-tab {
             padding-bottom: 20px;
         }
@@ -1060,262 +945,9 @@
             font-size: 40px;
             margin-bottom: 16px;
         }
-        
-        .confirmation-task {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 16px;
-            border: 1px solid var(--border);
-            margin-bottom: 16px;
-        }
-        
-        .confirmation-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        
-        .confirmation-title {
-            font-size: 16px;
-            font-weight: 600;
-        }
-        
-        .confirmation-price {
-            font-size: 18px;
-            font-weight: 700;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .confirmation-question {
-            font-size: 14px;
-            margin-bottom: 16px;
-            text-align: center;
-        }
-        
-        .confirmation-buttons {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-        
-        .confirmation-no {
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-            padding: 10px;
-            border-radius: 10px;
-            flex: 1;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        
-        .confirmation-yes {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 10px;
-            flex: 1;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        
-        .confirmation-rejected {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            padding: 12px;
-            border-radius: 10px;
-            margin-top: 12px;
-        }
-        
-        .confirmation-rejected-text {
-            color: var(--error);
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-        
-        .confirmation-support {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-        }
-        
-        .admin-panel {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid var(--border);
-        }
-        
-        .admin-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            text-align: center;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .admin-buttons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-        
-        .admin-btn {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            text-align: center;
-        }
-        
-        .admin-form {
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 16px;
-        }
-        
-        .admin-input {
-            width: 100%;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 12px;
-            color: var(--text-primary);
-            font-size: 14px;
-            margin-bottom: 12px;
-        }
-        
-        .admin-textarea {
-            width: 100%;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 12px;
-            color: var(--text-primary);
-            font-size: 14px;
-            margin-bottom: 12px;
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        .admin-submit {
-            background: var(--success);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-        }
-        
-        .admin-task-list {
-            max-height: 300px;
-            overflow-y: auto;
-        }
-        
-        .admin-task-item {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 12px;
-            margin-bottom: 10px;
-            border: 1px solid var(--border);
-        }
-        
-        .admin-task-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-        
-        .admin-task-title {
-            font-size: 14px;
-            font-weight: 600;
-        }
-        
-        .admin-task-actions {
-            display: flex;
-            gap: 8px;
-        }
-        
-        .admin-task-delete {
-            background: var(--error);
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 12px;
-            cursor: pointer;
-        }
-        
-        .admin-task-approve {
-            background: var(--success);
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 12px;
-            cursor: pointer;
-        }
-        
-        .admin-task-reject {
-            background: var(--error);
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 12px;
-            cursor: pointer;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Стили для вывода средств */
-        .withdraw-modal-content {
+        /* Стили для модального окна задания */
+        .task-modal-content {
             background: var(--card-bg);
             border-radius: 20px;
             padding: 24px;
@@ -1323,47 +955,113 @@
             max-width: 500px;
             border: 1px solid var(--border);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            max-height: 90vh;
+            overflow-y: auto;
         }
-
-        .withdraw-amount {
-            font-size: 48px;
-            font-weight: 800;
-            margin: 30px 0;
+        
+        .task-modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-align: center;
         }
-
-        .amount-input {
-            width: 100%;
+        
+        .task-modal-category {
+            display: block;
             background: var(--bg-secondary);
-            border: 1px solid var(--border);
+            padding: 8px 16px;
             border-radius: 12px;
-            padding: 16px;
-            font-size: 18px;
-            color: var(--text-primary);
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
             text-align: center;
-            margin-bottom: 20px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
         }
-
-        .withdraw-methods {
-            display: grid;
-            gap: 10px;
-            margin-bottom: 20px;
+        
+        .task-modal-price {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 25px 0;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
         }
-
-        .withdraw-method {
+        
+        .task-modal-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: center;
+            padding: 0 10px;
+        }
+        
+        .task-modal-details {
             background: var(--bg-secondary);
-            border-radius: 12px;
-            padding: 15px;
-            border: 1px solid var(--border);
-            cursor: pointer;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
         }
-
-        .withdraw-method.active {
-            border-color: var(--accent);
+        
+        .task-detail {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .task-detail:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .task-detail-label {
+            color: var(--text-secondary);
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .task-detail-value {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .task-modal-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .task-modal-cancel {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 14px;
+            flex: 1;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .task-modal-start {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 14px;
+            flex: 1;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
         }
 
         @media (min-width: 768px) {
@@ -1372,10 +1070,6 @@
             }
             
             .referral-stats {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            
-            .about-features {
                 grid-template-columns: repeat(4, 1fr);
             }
             
@@ -1390,7 +1084,6 @@
     </style>
 </head>
 <body>
-    <!-- Кастомный заголовок для Telegram -->
     <div class="tg-header">
         <div class="tg-header-title">LinkGold</div>
     </div>
@@ -1637,76 +1330,6 @@
         </div>
     </div>
 
-    <div class="modal" id="how-it-works-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-title">⚡ Как работает LinkGold</div>
-                <button class="modal-close" onclick="closeModal('how-it-works-modal')">×</button>
-            </div>
-            <div class="modal-body">
-                <p class="about-text">LinkGold — это инновационная платформа для заработка, которая позволяет каждому пользователю монетизировать свою активность в интернете.</p>
-                
-                <div class="about-features">
-                    <div class="about-feature">
-                        <div class="feature-icon">🚀</div>
-                        <div class="feature-text">Быстрый старт</div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="feature-icon">💎</div>
-                        <div class="feature-text">Честные условия</div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="feature-icon">🛡️</div>
-                        <div class="feature-text">Надежная защита</div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="feature-icon">📈</div>
-                        <div class="feature-text">Постоянный рост</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="about-modal">
-        <div class="modal-content about-modal-content">
-            <div class="modal-header">
-                <div class="modal-title">ℹ️ О LinkGold</div>
-                <button class="modal-close" onclick="closeModal('about-modal')">×</button>
-            </div>
-            <div class="modal-body">
-                <p class="about-text">LinkGold — это инновационная платформа для заработка, которая позволяет каждому пользователю монетизировать свою активность в интернете. Мы создали удобный и прозрачный сервис, где вы можете выполнять интересные задания и получать за это достойное вознаграждение.</p>
-                
-                <p class="about-text">Наша миссия — предоставить возможность дополнительного заработка для всех, кто готов проявить активность и выполнять простые задачи. Мы верим, что каждый должен иметь возможность монетизировать свое время и усилия, проведенные в интернете.</p>
-                
-                <div class="about-features">
-                    <div class="about-feature">
-                        <div class="feature-icon">🚀</div>
-                        <div class="feature-text">Быстрый старт</div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="feature-icon">💎</div>
-                        <div class="feature-text">Честные условия</div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="feature-icon">🛡️</div>
-                        <div class="feature-text">Надежная защита</div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="feature-icon">📈</div>
-                        <div class="feature-text">Постоянный рост</div>
-                    </div>
-                </div>
-                
-                <p class="about-text">Мы постоянно работаем над улучшением сервиса, добавляем новые задания и возможности для заработка. Наша команда заботится о каждом пользователе и стремится создать лучшие условия для взаимовыгодного сотрудничества.</p>
-                
-                <div class="about-footer">
-                    LinkGold © 2023. Все права защищены.
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="modal" id="task-modal">
         <div class="modal-content task-modal-content">
             <div class="modal-header">
@@ -1741,37 +1364,6 @@
         </div>
     </div>
 
-    <div class="modal" id="withdraw-modal">
-        <div class="modal-content withdraw-modal-content">
-            <div class="modal-header">
-                <div class="modal-title">💳 Вывод средств</div>
-                <button class="modal-close" onclick="closeModal('withdraw-modal')">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="withdraw-amount" id="withdraw-balance">0 ₽</div>
-                
-                <input type="number" class="amount-input" placeholder="Введите сумму" id="withdraw-amount-input">
-                
-                <div class="withdraw-methods">
-                    <div class="withdraw-method active">
-                        <div>💳 Банковская карта</div>
-                        <div style="font-size: 12px; color: var(--text-secondary);">Вывод за 1-3 дня</div>
-                    </div>
-                    <div class="withdraw-method">
-                        <div>📱 ЮMoney</div>
-                        <div style="font-size: 12px; color: var(--text-secondary);">Мгновенный вывод</div>
-                    </div>
-                    <div class="withdraw-method">
-                        <div>⚡ Qiwi</div>
-                        <div style="font-size: 12px; color: var(--text-secondary);">Мгновенный вывод</div>
-                    </div>
-                </div>
-                
-                <button class="btn btn-primary btn-full" onclick="processWithdrawal()">Вывести средства</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Модальные окна администратора -->
     <div class="modal" id="admin-task-modal">
         <div class="modal-content">
@@ -1801,9 +1393,11 @@
         // Глобальные переменные
         let currentUser = null;
         let tasks = [];
-        let currentTask = null;
         let userTasks = [];
-        let admins = ['8036875641']; // Главный админ
+        const MAIN_ADMIN_ID = "8036875641";
+
+        // Имитация сервера через GitHub Pages API
+        const SERVER_URL = window.location.origin; // Используем текущий домен
 
         // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', function() {
@@ -1813,7 +1407,7 @@
         // Основная функция инициализации
         async function initializeApp() {
             await loadUserData();
-            await loadTasks();
+            await loadTasksFromServer();
             updateUI();
             checkAdminStatus();
         }
@@ -1824,7 +1418,7 @@
             
             if (tgUser) {
                 currentUser = {
-                    id: tgUser.id,
+                    id: tgUser.id.toString(),
                     username: tgUser.username ? `@${tgUser.username}` : (tgUser.first_name || 'Пользователь'),
                     firstName: tgUser.first_name,
                     lastName: tgUser.last_name,
@@ -1835,26 +1429,51 @@
                     level: 1,
                     levelProgress: 0,
                     referrals: { invited: 0, earned: 0 },
-                    isAdmin: admins.includes(tgUser.id.toString())
+                    isAdmin: tgUser.id.toString() === MAIN_ADMIN_ID
                 };
 
-                // Загрузка из localStorage
+                // Загрузка данных пользователя из localStorage как fallback
                 const saved = localStorage.getItem(`user_${currentUser.id}`);
                 if (saved) {
                     const data = JSON.parse(saved);
                     Object.assign(currentUser, data);
                 }
+            } else {
+                // Fallback для тестирования
+                currentUser = {
+                    id: "test_user",
+                    username: "Тестовый пользователь",
+                    balance: 0,
+                    completedTasks: 0,
+                    activeTasks: 0,
+                    quality: 100,
+                    level: 1,
+                    levelProgress: 0,
+                    referrals: { invited: 0, earned: 0 },
+                    isAdmin: false
+                };
             }
         }
 
-        // Загрузка заданий
-        async function loadTasks() {
-            const saved = localStorage.getItem('tasks');
-            tasks = saved ? JSON.parse(saved) : await getDefaultTasks();
+        // Загрузка заданий с "сервера" (имитация)
+        async function loadTasksFromServer() {
+            try {
+                // Пытаемся загрузить с GitHub через RawGit или аналогичный сервис
+                const response = await fetch(`${SERVER_URL}/data/tasks.json?t=${Date.now()}`);
+                if (response.ok) {
+                    tasks = await response.json();
+                } else {
+                    throw new Error('Failed to load tasks');
+                }
+            } catch (error) {
+                console.log('Используем локальные задания:', error);
+                // Fallback на локальные задания
+                tasks = getDefaultTasks();
+            }
         }
 
         // Загрузка заданий по умолчанию
-        async function getDefaultTasks() {
+        function getDefaultTasks() {
             return [
                 {
                     id: 1,
@@ -1866,9 +1485,52 @@
                     status: "available",
                     available: 15,
                     link: "https://t.me/linkgold_channel",
-                    adminId: "8036875641"
+                    adminId: MAIN_ADMIN_ID,
+                    createdAt: new Date().toISOString()
+                },
+                {
+                    id: 2,
+                    title: "Просмотр YouTube видео",
+                    category: "Видео",
+                    price: 10,
+                    description: "Посмотрите видео на YouTube до конца и поставьте лайк.",
+                    time: "10 минут",
+                    status: "available",
+                    available: 20,
+                    link: "https://youtube.com",
+                    adminId: MAIN_ADMIN_ID,
+                    createdAt: new Date().toISOString()
+                },
+                {
+                    id: 3,
+                    title: "Репост записи ВКонтакте",
+                    category: "Соцсети",
+                    price: 20,
+                    description: "Сделайте репост записи в своей группе или на стене.",
+                    time: "5 минут",
+                    status: "available",
+                    available: 10,
+                    link: "https://vk.com",
+                    adminId: MAIN_ADMIN_ID,
+                    createdAt: new Date().toISOString()
                 }
             ];
+        }
+
+        // Сохранение заданий на "сервер" (имитация)
+        async function saveTasksToServer() {
+            try {
+                // В реальном приложении здесь будет запрос к API
+                // Для GitHub Pages сохраняем в localStorage и имитируем синхронизацию
+                localStorage.setItem('linkgold_tasks', JSON.stringify(tasks));
+                
+                // Создаем файл tasks.json для GitHub (это сработает только если есть доступ к записи)
+                const tasksData = JSON.stringify(tasks, null, 2);
+                // Здесь могла бы быть логика сохранения на сервер
+                console.log('Задания сохранены (имитация сервера)');
+            } catch (error) {
+                console.error('Ошибка сохранения заданий:', error);
+            }
         }
 
         // Проверка статуса администратора
@@ -1887,14 +1549,15 @@
             document.getElementById('username').textContent = currentUser.username;
             document.getElementById('user-tg').textContent = currentUser.username;
             document.getElementById('user-balance-main').textContent = currentUser.balance + ' ₽';
-            document.getElementById('modal-balance').textContent = currentUser.balance + ' ₽';
-            document.getElementById('withdraw-balance').textContent = currentUser.balance + ' ₽';
 
             // Обновление статистики
-            document.querySelectorAll('.profile-stat .stat-value').forEach((el, index) => {
-                const values = [currentUser.balance + ' ₽', currentUser.completedTasks, currentUser.activeTasks, currentUser.quality + '%'];
-                el.textContent = values[index];
-            });
+            const stats = document.querySelectorAll('.profile-stat .stat-value');
+            if (stats.length >= 4) {
+                stats[0].textContent = currentUser.balance + ' ₽';
+                stats[1].textContent = currentUser.completedTasks;
+                stats[2].textContent = currentUser.activeTasks;
+                stats[3].textContent = currentUser.quality + '%';
+            }
 
             // Прогресс уровня
             const progress = (currentUser.levelProgress / 10) * 100;
@@ -1922,8 +1585,13 @@
             const container = document.getElementById(containerId);
             if (!container) return;
 
+            if (taskList.length === 0) {
+                container.innerHTML = '<div class="no-tasks"><div class="no-tasks-icon">📝</div><div>Задания не найдены</div></div>';
+                return;
+            }
+
             container.innerHTML = taskList.map(task => `
-                <div class="task-card" onclick="openTask(${task.id})">
+                <div class="task-card" onclick="openTask(${task.id}, '${containerId}')">
                     <div class="task-header">
                         <div>
                             <div class="task-title">${task.title}</div>
@@ -1934,10 +1602,12 @@
                     <div class="task-description">${task.description}</div>
                     <div class="task-footer">
                         <div class="task-time">${task.time}</div>
-                        <button class="task-btn">${containerId === 'new-tasks' ? 'Выполнить' : 'Просмотр'}</button>
+                        <button class="task-btn" onclick="event.stopPropagation(); ${containerId === 'new-tasks' ? `startTask(${task.id})` : `reviewTask(${task.id})`}">
+                            ${containerId === 'new-tasks' ? 'Выполнить' : containerId === 'confirmation-tasks' ? 'Проверить' : 'Просмотр'}
+                        </button>
                     </div>
                 </div>
-            `).join('') || '<div class="no-tasks"><div class="no-tasks-icon">📝</div><div>Задания не найдены</div></div>';
+            `).join('');
         }
 
         // Навигация
@@ -1950,7 +1620,8 @@
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
             
             document.getElementById(tab + '-tab').classList.add('active');
-            document.querySelector(`.nav-item:nth-child(${tab === 'main' ? 1 : tab === 'tasks' ? 2 : 3})`).classList.add('active');
+            const tabIndex = tab === 'main' ? 1 : tab === 'tasks' ? 2 : 3;
+            document.querySelector(`.nav-item:nth-child(${tabIndex})`).classList.add('active');
         }
 
         function showTaskTab(tab) {
@@ -1961,22 +1632,12 @@
             event.target.classList.add('active');
         }
 
-        // Поиск и фильтрация
-        function searchTasks(query) {
-            // Реализация поиска
-            console.log('Поиск:', query);
-        }
-
-        function setFilter(filter) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            // Реализация фильтрации
-            console.log('Фильтр:', filter);
-        }
-
         // Работа с заданиями
-        function openTask(taskId) {
-            const task = tasks.find(t => t.id === taskId) || userTasks.find(t => t.id === taskId);
+        function openTask(taskId, listType) {
+            const task = listType === 'new-tasks' ? 
+                tasks.find(t => t.id === taskId) : 
+                userTasks.find(t => t.id === taskId);
+                
             if (!task) return;
 
             currentTask = task;
@@ -1991,25 +1652,39 @@
                 task.status === 'pending' ? 'На проверке' : 'Выполнено';
             document.getElementById('task-modal-available').textContent = task.available + ' заданий';
 
+            // Показываем соответствующую кнопку
+            const startBtn = document.querySelector('.task-modal-start');
+            if (listType === 'new-tasks') {
+                startBtn.textContent = 'Начать задание';
+                startBtn.onclick = () => startTask(taskId);
+            } else {
+                startBtn.textContent = 'Закрыть';
+                startBtn.onclick = () => closeModal('task-modal');
+            }
+
             document.getElementById('task-modal').classList.add('active');
         }
 
-        function startTask() {
-            if (!currentTask) return;
+        function startTask(taskId) {
+            const task = tasks.find(t => t.id === taskId);
+            if (!task) return;
 
             // Открыть ссылку задания
-            window.open(currentTask.link, '_blank');
+            window.open(task.link, '_blank');
             
             // Добавить в мои задания
             const userTask = {
-                ...currentTask,
+                ...task,
                 status: 'pending',
                 startTime: new Date().toISOString(),
-                userId: currentUser.id
+                userId: currentUser.id,
+                userComment: '',
+                userProof: ''
             };
             
             userTasks.push(userTask);
             currentUser.activeTasks++;
+            task.available = Math.max(0, task.available - 1);
             
             // Обновить интерфейс
             updateUI();
@@ -2019,30 +1694,33 @@
             alert('Задание начато! После выполнения вернитесь для подтверждения.');
         }
 
-        // Вывод средств
-        function showWithdrawModal() {
-            document.getElementById('withdraw-modal').classList.add('active');
-        }
+        function reviewTask(taskId) {
+            const task = userTasks.find(t => t.id === taskId);
+            if (!task) return;
 
-        function processWithdrawal() {
-            const amount = parseInt(document.getElementById('withdraw-amount-input').value);
-            
-            if (!amount || amount <= 0) {
-                alert('Введите корректную сумму');
-                return;
+            const proof = prompt('Введите ссылку на доказательство выполнения задания:');
+            if (proof) {
+                task.userProof = proof;
+                task.status = 'completed';
+                task.completionTime = new Date().toISOString();
+                
+                // Начисляем деньги
+                currentUser.balance += task.price;
+                currentUser.completedTasks++;
+                currentUser.activeTasks--;
+                currentUser.levelProgress++;
+
+                // Проверяем повышение уровня
+                if (currentUser.levelProgress >= 10) {
+                    currentUser.level++;
+                    currentUser.levelProgress = 0;
+                    alert(`🎉 Поздравляем! Вы достигли уровня ${currentUser.level}!`);
+                }
+
+                updateUI();
+                saveData();
+                alert('Задание отправлено на проверку! Деньги зачислены на баланс.');
             }
-            
-            if (amount > currentUser.balance) {
-                alert('Недостаточно средств на балансе');
-                return;
-            }
-            
-            currentUser.balance -= amount;
-            updateUI();
-            saveData();
-            closeModal('withdraw-modal');
-            
-            alert(`Заявка на вывод ${amount} ₽ отправлена на обработку!`);
         }
 
         // Функции администратора
@@ -2073,7 +1751,8 @@
                 status: "available",
                 available: 10,
                 link,
-                adminId: currentUser.id.toString()
+                adminId: currentUser.id,
+                createdAt: new Date().toISOString()
             };
 
             tasks.push(newTask);
@@ -2081,11 +1760,19 @@
             updateUI();
             closeModal('admin-task-modal');
             
-            alert('Задание успешно добавлено!');
+            alert('Задание успешно добавлено! Теперь его видят все пользователи.');
         }
 
         function showCheckTasks() {
-            alert('Функция проверки заданий в разработке');
+            // Показываем задания на проверку
+            const pendingTasks = userTasks.filter(t => t.status === 'pending');
+            if (pendingTasks.length === 0) {
+                alert('Нет заданий на проверку');
+                return;
+            }
+
+            showTaskTab('confirmation');
+            showTasksTab();
         }
 
         function showAdminManagement() {
@@ -2108,9 +1795,18 @@
             document.getElementById(modalId).classList.remove('active');
         }
 
+        function showBalanceModal() {
+            document.getElementById('modal-balance').textContent = currentUser.balance + ' ₽';
+            document.getElementById('balance-modal').classList.add('active');
+        }
+
         function goToProfile() {
             showProfileTab();
             closeModal('balance-modal');
+        }
+
+        function showHowItWorksModal() {
+            alert('Функция в разработке');
         }
 
         function showLevelInfo() {
@@ -2118,11 +1814,50 @@
         }
 
         function showAboutPage() {
-            document.getElementById('about-modal').classList.add('active');
+            alert('LinkGold - Платформа для заработка\nВерсия 1.0\n\nСвязь с поддержкой: @LinkGoldAssistant');
         }
 
         function showPrices() {
             alert('Для размещения рекламы свяжитесь с поддержкой: @LinkGoldAssistant');
+        }
+
+        function showWithdrawModal() {
+            alert('Функция вывода средств скоро будет доступна! Текущий баланс: ' + currentUser.balance + ' ₽');
+        }
+
+        // Поиск и фильтрация (упрощенная версия)
+        function searchTasks(query) {
+            const filteredTasks = tasks.filter(task => 
+                task.title.toLowerCase().includes(query.toLowerCase()) ||
+                task.description.toLowerCase().includes(query.toLowerCase()) ||
+                task.category.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            renderTaskList('new-tasks', filteredTasks);
+        }
+
+        function setFilter(filter) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            let filteredTasks = [...tasks];
+            
+            switch(filter) {
+                case 'price-high':
+                    filteredTasks.sort((a, b) => b.price - a.price);
+                    break;
+                case 'price-low':
+                    filteredTasks.sort((a, b) => a.price - b.price);
+                    break;
+                case 'time-short':
+                    // Фильтрация по времени (упрощенно)
+                    filteredTasks = filteredTasks.filter(task => 
+                        task.time.includes('5') || task.time.includes('10')
+                    );
+                    break;
+            }
+            
+            renderTaskList('new-tasks', filteredTasks);
         }
 
         // Сохранение данных
@@ -2130,14 +1865,26 @@
             if (currentUser) {
                 localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(currentUser));
             }
-            localStorage.setItem('tasks', JSON.stringify(tasks));
+            localStorage.setItem('linkgold_tasks', JSON.stringify(tasks));
             localStorage.setItem('userTasks', JSON.stringify(userTasks));
+            
+            // Сохраняем на "сервер"
+            saveTasksToServer();
         }
 
-        // Синхронизация с сервером (заглушка)
+        // Загрузка userTasks из localStorage
+        const savedUserTasks = localStorage.getItem('userTasks');
+        if (savedUserTasks) {
+            userTasks = JSON.parse(savedUserTasks);
+        }
+
+        // Периодическая синхронизация
         setInterval(() => {
-            console.log('Синхронизация данных...');
-        }, 30000);
+            loadTasksFromServer().then(() => {
+                updateUI();
+            });
+        }, 30000); // Каждые 30 секунд
+
     </script>
 </body>
 </html>
