@@ -3,10 +3,15 @@ const cors = require('cors');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const jwt = require('jsonwebtoken');
+const { Telegraf } = require('telegraf');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'linkgold-secret-key-2024';
+const BOT_TOKEN = process.env.BOT_TOKEN || 'your-telegram-bot-token';
+
+// Инициализация бота Telegram
+const bot = new Telegraf(BOT_TOKEN);
 
 // Для Railway - используем абсолютный путь к БД
 const dbPath = process.env.NODE_ENV === 'production' 
@@ -32,6 +37,7 @@ function initializeDatabase() {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         telegram_id TEXT UNIQUE,
         username TEXT,
+        first_name TEXT,
         balance REAL DEFAULT 0,
         completed_tasks INTEGER DEFAULT 0,
         active_tasks INTEGER DEFAULT 0,
@@ -77,15 +83,30 @@ function initializeDatabase() {
         if (err) console.error('Ошибка создания таблицы user_tasks:', err);
       });
 
-      // Таблица сообщений
-      db.run(`CREATE TABLE IF NOT EXISTS messages (
+      // Таблица сообщений поддержки
+      db.run(`CREATE TABLE IF NOT EXISTS support_messages (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id TEXT,
+        message TEXT,
+        admin_id TEXT,
+        admin_reply TEXT,
+        status TEXT DEFAULT 'open',
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        replied_at DATETIME
+      )`, (err) => {
+        if (err) console.error('Ошибка создания таблицы support_messages:', err);
+      });
+
+      // Таблица чатов
+      db.run(`CREATE TABLE IF NOT EXISTS chats (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id TEXT,
         message TEXT,
         is_admin BOOLEAN DEFAULT 0,
+        admin_id TEXT,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
       )`, (err) => {
-        if (err) console.error('Ошибка создания таблицы messages:', err);
+        if (err) console.error('Ошибка создания таблицы chats:', err);
       });
 
       // Создаем главного администратора
@@ -93,8 +114,8 @@ function initializeDatabase() {
         if (err) console.error('Ошибка проверки администратора:', err);
         
         if (!row) {
-          db.run(`INSERT INTO users (telegram_id, username, is_admin, is_main_admin) 
-                  VALUES ('8036875641', '@LinkGoldAssistant', 1, 1)`, (err) => {
+          db.run(`INSERT INTO users (telegram_id, username, first_name, is_admin, is_main_admin) 
+                  VALUES ('8036875641', '@LinkGoldAssistant', 'LinkGold Assistant', 1, 1)`, (err) => {
             if (err) {
               console.error('Ошибка создания администратора:', err);
             } else {
@@ -181,7 +202,7 @@ app.get('/api/health', (req, res) => {
 
 // Регистрация/авторизация через Telegram
 app.post('/api/auth/telegram', (req, res) => {
-  const { telegramId, username } = req.body;
+  const { telegramId, username, firstName } = req.body;
 
   if (!telegramId) {
     return res.status(400).json({ success: false, error: 'Telegram ID обязателен' });
@@ -195,14 +216,16 @@ app.post('/api/auth/telegram', (req, res) => {
     }
 
     if (user) {
-      // Пользователь существует - обновляем username если изменился
-      if (user.username !== username) {
-        db.run('UPDATE users SET username = ? WHERE telegram_id = ?', [username, telegramId]);
+      // Пользователь существует - обновляем данные если изменились
+      if (user.username !== username || user.first_name !== firstName) {
+        db.run('UPDATE users SET username = ?, first_name = ? WHERE telegram_id = ?', 
+          [username, firstName, telegramId]);
       }
       
       const token = jwt.sign(
         { 
           telegramId: user.telegram_id, 
+          username: user.username,
           isAdmin: user.is_admin === 1, 
           isMainAdmin: user.is_main_admin === 1 
         },
@@ -216,6 +239,7 @@ app.post('/api/auth/telegram', (req, res) => {
         user: {
           telegramId: user.telegram_id,
           username: user.username,
+          firstName: user.first_name,
           balance: user.balance,
           completedTasks: user.completed_tasks,
           activeTasks: user.active_tasks,
@@ -228,8 +252,8 @@ app.post('/api/auth/telegram', (req, res) => {
     } else {
       // Новый пользователь
       db.run(
-        'INSERT INTO users (telegram_id, username) VALUES (?, ?)',
-        [telegramId, username || `user_${telegramId}`],
+        'INSERT INTO users (telegram_id, username, first_name) VALUES (?, ?, ?)',
+        [telegramId, username || `user_${telegramId}`, firstName || 'User'],
         function(err) {
           if (err) {
             console.error('Ошибка создания пользователя:', err);
@@ -239,6 +263,7 @@ app.post('/api/auth/telegram', (req, res) => {
           const token = jwt.sign(
             { 
               telegramId, 
+              username: username || `user_${telegramId}`,
               isAdmin: false, 
               isMainAdmin: false 
             },
@@ -252,6 +277,7 @@ app.post('/api/auth/telegram', (req, res) => {
             user: {
               telegramId,
               username: username || `user_${telegramId}`,
+              firstName: firstName || 'User',
               balance: 0,
               completedTasks: 0,
               activeTasks: 0,
@@ -267,9 +293,25 @@ app.post('/api/auth/telegram', (req, res) => {
   });
 });
 
-// Получение заданий
+// Получение заданий с поиском и фильтрацией
 app.get('/api/tasks', authenticateToken, (req, res) => {
-  db.all('SELECT * FROM tasks WHERE is_active = 1 ORDER BY created_at DESC', (err, tasks) => {
+  const { search, category } = req.query;
+  let query = 'SELECT * FROM tasks WHERE is_active = 1';
+  const params = [];
+
+  if (search) {
+    query += ' AND (title LIKE ? OR description LIKE ?)';
+    params.push(`%${search}%`, `%${search}%`);
+  }
+
+  if (category && category !== 'all') {
+    query += ' AND category = ?';
+    params.push(category);
+  }
+
+  query += ' ORDER BY created_at DESC';
+
+  db.all(query, params, (err, tasks) => {
     if (err) {
       console.error('Ошибка получения заданий:', err);
       return res.status(500).json({ success: false, error: 'Ошибка базы данных' });
@@ -345,15 +387,23 @@ app.post('/api/tasks/submit', authenticateToken, (req, res) => {
 
 // Получение заданий пользователя
 app.get('/api/user/tasks', authenticateToken, (req, res) => {
-  const query = `
+  const { status } = req.query;
+  let query = `
     SELECT ut.*, t.title, t.price, t.category 
     FROM user_tasks ut 
     JOIN tasks t ON ut.task_id = t.id 
-    WHERE ut.user_id = ? 
-    ORDER BY ut.submitted_at DESC
+    WHERE ut.user_id = ?
   `;
+  const params = [req.user.telegramId];
 
-  db.all(query, [req.user.telegramId], (err, tasks) => {
+  if (status) {
+    query += ' AND ut.status = ?';
+    params.push(status);
+  }
+
+  query += ' ORDER BY ut.submitted_at DESC';
+
+  db.all(query, params, (err, tasks) => {
     if (err) {
       console.error('Ошибка получения заданий пользователя:', err);
       return res.status(500).json({ success: false, error: 'Ошибка базы данных' });
@@ -362,124 +412,130 @@ app.get('/api/user/tasks', authenticateToken, (req, res) => {
   });
 });
 
-// Отмена задания
-app.post('/api/tasks/cancel', authenticateToken, (req, res) => {
-  const { userTaskId } = req.body;
-
-  db.run('DELETE FROM user_tasks WHERE id = ? AND user_id = ?', 
-    [userTaskId, req.user.telegramId], function(err) {
+// Чат поддержки
+app.get('/api/chat/messages', authenticateToken, (req, res) => {
+  db.all(
+    `SELECT c.*, u.username, u.first_name 
+     FROM chats c 
+     LEFT JOIN users u ON c.admin_id = u.telegram_id 
+     WHERE c.user_id = ? 
+     ORDER BY c.created_at ASC`,
+    [req.user.telegramId],
+    (err, messages) => {
       if (err) {
-        console.error('Ошибка отмены задания:', err);
-        return res.status(500).json({ success: false, error: 'Ошибка отмены задания' });
+        console.error('Ошибка получения сообщений:', err);
+        return res.status(500).json({ success: false, error: 'Ошибка базы данных' });
       }
-
-      if (this.changes === 0) {
-        return res.status(404).json({ success: false, error: 'Задание не найдено' });
-      }
-
-      // Уменьшаем счетчик активных заданий
-      db.run('UPDATE users SET active_tasks = GREATEST(active_tasks - 1, 0) WHERE telegram_id = ?', 
-        [req.user.telegramId], (err) => {
-          if (err) console.error('Ошибка обновления активных заданий:', err);
-        });
-
-      res.json({ success: true, message: 'Задание отменено' });
-    });
+      res.json({ success: true, messages: messages || [] });
+    }
+  );
 });
 
-// Получение заданий на проверку (админ)
-app.get('/api/tasks/review', authenticateToken, (req, res) => {
+app.post('/api/chat/messages', authenticateToken, (req, res) => {
+  const { message } = req.body;
+
+  if (!message || message.trim().length === 0) {
+    return res.status(400).json({ success: false, error: 'Сообщение не может быть пустым' });
+  }
+
+  db.run(
+    'INSERT INTO chats (user_id, message, is_admin) VALUES (?, ?, 0)',
+    [req.user.telegramId, message.trim()],
+    function(err) {
+      if (err) {
+        console.error('Ошибка отправки сообщения:', err);
+        return res.status(500).json({ success: false, error: 'Ошибка отправки сообщения' });
+      }
+
+      // Уведомление администраторам о новом сообщении
+      notifyAdminsAboutNewMessage(req.user.telegramId, req.user.username, message.trim());
+
+      res.json({ success: true, message: 'Сообщение отправлено' });
+    }
+  );
+});
+
+// Ответ администратора в чат
+app.post('/api/chat/admin/reply', authenticateToken, (req, res) => {
+  if (!req.user.isAdmin) {
+    return res.status(403).json({ success: false, error: 'Требуются права администратора' });
+  }
+
+  const { userId, message } = req.body;
+
+  if (!userId || !message) {
+    return res.status(400).json({ success: false, error: 'ID пользователя и сообщение обязательны' });
+  }
+
+  db.run(
+    'INSERT INTO chats (user_id, message, is_admin, admin_id) VALUES (?, ?, 1, ?)',
+    [userId, message.trim(), req.user.telegramId],
+    function(err) {
+      if (err) {
+        console.error('Ошибка отправки ответа:', err);
+        return res.status(500).json({ success: false, error: 'Ошибка отправки ответа' });
+      }
+
+      // Уведомление пользователя о ответе
+      notifyUserAboutReply(userId, message.trim());
+
+      res.json({ success: true, message: 'Ответ отправлен' });
+    }
+  );
+});
+
+// Админка - получение всех чатов
+app.get('/api/admin/chats', authenticateToken, (req, res) => {
   if (!req.user.isAdmin) {
     return res.status(403).json({ success: false, error: 'Требуются права администратора' });
   }
 
   const query = `
-    SELECT ut.*, u.username, t.title, t.price 
-    FROM user_tasks ut 
-    JOIN users u ON ut.user_id = u.telegram_id 
-    JOIN tasks t ON ut.task_id = t.id 
-    WHERE ut.status = 'pending'
-    ORDER BY ut.submitted_at DESC
+    SELECT DISTINCT c.user_id, u.username, u.first_name, 
+           (SELECT message FROM chats WHERE user_id = c.user_id ORDER BY created_at DESC LIMIT 1) as last_message,
+           (SELECT created_at FROM chats WHERE user_id = c.user_id ORDER BY created_at DESC LIMIT 1) as last_message_time,
+           (SELECT COUNT(*) FROM chats WHERE user_id = c.user_id AND is_admin = 0 AND admin_id IS NULL) as unread_count
+    FROM chats c
+    JOIN users u ON c.user_id = u.telegram_id
+    ORDER BY last_message_time DESC
   `;
 
-  db.all(query, (err, tasks) => {
+  db.all(query, (err, chats) => {
     if (err) {
-      console.error('Ошибка получения заданий на проверку:', err);
+      console.error('Ошибка получения чатов:', err);
       return res.status(500).json({ success: false, error: 'Ошибка базы данных' });
     }
-    res.json({ success: true, tasks: tasks || [] });
+    res.json({ success: true, chats: chats || [] });
   });
 });
 
-// Проверка задания (админ)
-app.post('/api/tasks/review/:id', authenticateToken, (req, res) => {
+// Админка - получение сообщений конкретного пользователя
+app.get('/api/admin/chats/:userId', authenticateToken, (req, res) => {
   if (!req.user.isAdmin) {
     return res.status(403).json({ success: false, error: 'Требуются права администратора' });
   }
 
-  const { status } = req.body;
-  const taskId = req.params.id;
+  const { userId } = req.params;
 
-  if (!['completed', 'rejected'].includes(status)) {
-    return res.status(400).json({ success: false, error: 'Неверный статус' });
-  }
-
-  // Получаем информацию о задании
-  db.get(`
-    SELECT ut.user_id, ut.task_id, t.price 
-    FROM user_tasks ut 
-    JOIN tasks t ON ut.task_id = t.id 
-    WHERE ut.id = ?
-  `, [taskId], (err, task) => {
-    if (err) {
-      console.error('Ошибка получения информации о задании:', err);
-      return res.status(500).json({ success: false, error: 'Ошибка базы данных' });
+  db.all(
+    `SELECT c.*, u.username, u.first_name 
+     FROM chats c 
+     LEFT JOIN users u ON c.admin_id = u.telegram_id 
+     WHERE c.user_id = ? 
+     ORDER BY c.created_at ASC`,
+    [userId],
+    (err, messages) => {
+      if (err) {
+        console.error('Ошибка получения сообщений:', err);
+        return res.status(500).json({ success: false, error: 'Ошибка базы данных' });
+      }
+      res.json({ success: true, messages: messages || [] });
     }
-
-    if (!task) {
-      return res.status(404).json({ success: false, error: 'Задание не найдено' });
-    }
-
-    // Обновляем статус задания
-    db.run('UPDATE user_tasks SET status = ?, reviewed_at = CURRENT_TIMESTAMP, reviewed_by = ? WHERE id = ?',
-      [status, req.user.telegramId, taskId], function(err) {
-        if (err) {
-          console.error('Ошибка обновления задания:', err);
-          return res.status(500).json({ success: false, error: 'Ошибка обновления задания' });
-        }
-
-        if (status === 'completed') {
-          // Начисляем деньги пользователю
-          db.run(`UPDATE users 
-                 SET balance = balance + ?, 
-                     completed_tasks = completed_tasks + 1, 
-                     active_tasks = GREATEST(active_tasks - 1, 0),
-                     level_progress = level_progress + 1 
-                 WHERE telegram_id = ?`,
-            [task.price, task.user_id], (err) => {
-              if (err) {
-                console.error('Ошибка начисления средств:', err);
-              }
-              
-              // Проверяем повышение уровня
-              db.get('SELECT level_progress FROM users WHERE telegram_id = ?', [task.user_id], (err, user) => {
-                if (!err && user && user.level_progress >= 10) {
-                  db.run('UPDATE users SET level = level + 1, level_progress = 0 WHERE telegram_id = ?', [task.user_id]);
-                }
-              });
-            });
-        } else {
-          // Уменьшаем счетчик активных заданий при отклонении
-          db.run('UPDATE users SET active_tasks = GREATEST(active_tasks - 1, 0) WHERE telegram_id = ?', [task.user_id]);
-        }
-
-        res.json({ success: true, message: 'Статус задания обновлен' });
-      });
-  });
+  );
 });
 
 // Добавление задания (админ)
-app.post('/api/tasks', authenticateToken, (req, res) => {
+app.post('/api/admin/tasks', authenticateToken, (req, res) => {
   if (!req.user.isAdmin) {
     return res.status(403).json({ success: false, error: 'Требуются права администратора' });
   }
@@ -503,56 +559,40 @@ app.post('/api/tasks', authenticateToken, (req, res) => {
   );
 });
 
-// Сообщения поддержки
-app.get('/api/messages', authenticateToken, (req, res) => {
-  db.all(
-    'SELECT * FROM messages WHERE user_id = ? ORDER BY created_at ASC',
-    [req.user.telegramId],
-    (err, messages) => {
-      if (err) {
-        console.error('Ошибка получения сообщений:', err);
-        return res.status(500).json({ success: false, error: 'Ошибка базы данных' });
-      }
-      res.json({ success: true, messages: messages || [] });
-    }
-  );
-});
-
-app.post('/api/messages', authenticateToken, (req, res) => {
-  const { message } = req.body;
-
-  if (!message || message.trim().length === 0) {
-    return res.status(400).json({ success: false, error: 'Сообщение не может быть пустым' });
-  }
-
-  db.run(
-    'INSERT INTO messages (user_id, message) VALUES (?, ?)',
-    [req.user.telegramId, message.trim()],
-    function(err) {
-      if (err) {
-        console.error('Ошибка отправки сообщения:', err);
-        return res.status(500).json({ success: false, error: 'Ошибка отправки сообщения' });
-      }
-
-      res.json({ success: true, message: 'Сообщение отправлено' });
-    }
-  );
-});
-
-// Получение пользователей (админ)
-app.get('/api/users', authenticateToken, (req, res) => {
+// Получение заданий на проверку (админ)
+app.get('/api/admin/tasks/review', authenticateToken, (req, res) => {
   if (!req.user.isAdmin) {
     return res.status(403).json({ success: false, error: 'Требуются права администратора' });
   }
 
-  db.all('SELECT telegram_id, username, balance, completed_tasks, active_tasks, level, is_admin FROM users ORDER BY created_at DESC', (err, users) => {
+  const query = `
+    SELECT ut.*, u.username, u.first_name, t.title, t.price 
+    FROM user_tasks ut 
+    JOIN users u ON ut.user_id = u.telegram_id 
+    JOIN tasks t ON ut.task_id = t.id 
+    WHERE ut.status = 'pending'
+    ORDER BY ut.submitted_at DESC
+  `;
+
+  db.all(query, (err, tasks) => {
     if (err) {
-      console.error('Ошибка получения пользователей:', err);
+      console.error('Ошибка получения заданий на проверку:', err);
       return res.status(500).json({ success: false, error: 'Ошибка базы данных' });
     }
-    res.json({ success: true, users: users || [] });
+    res.json({ success: true, tasks: tasks || [] });
   });
 });
+
+// Вспомогательные функции для уведомлений
+function notifyAdminsAboutNewMessage(userId, username, message) {
+  // Здесь можно добавить отправку уведомлений администраторам через Telegram
+  console.log(`Новое сообщение от пользователя ${username} (${userId}): ${message}`);
+}
+
+function notifyUserAboutReply(userId, message) {
+  // Здесь можно добавить отправку уведомления пользователю через Telegram
+  console.log(`Ответ отправлен пользователю ${userId}: ${message}`);
+}
 
 // Обслуживание React/SPA приложения
 app.get('*', (req, res) => {
@@ -574,7 +614,6 @@ async function startServer() {
       console.log(`🚀 Сервер LinkGold запущен на порту ${PORT}`);
       console.log(`🌍 Режим: ${process.env.NODE_ENV || 'development'}`);
       console.log(`📊 База данных: ${dbPath}`);
-      console.log(`🔑 JWT Secret: ${JWT_SECRET.includes('production') ? 'PRODUCTION' : 'DEVELOPMENT'}`);
     });
   } catch (error) {
     console.error('❌ Ошибка запуска сервера:', error);
